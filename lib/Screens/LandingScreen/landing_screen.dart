@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:silver_express_app/Screens/PrincipalScreen/principal_screen.dart';
 
 class LandingScreen extends StatelessWidget {
   final Future<void> Function()? login;
@@ -59,7 +60,13 @@ class LandingScreen extends StatelessWidget {
                       fixedSize: MaterialStateProperty.all(const Size(270, 50)),
                       backgroundColor: const MaterialStatePropertyAll(
                           Color.fromARGB(255, 0, 104, 24))),
-                  onPressed: login,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const PrincipalScreen()),
+                    );
+                  },
                   child: const Text(
                     'Comenzemos el Viaje',
                     style: TextStyle(color: Colors.white, fontSize: 20),
