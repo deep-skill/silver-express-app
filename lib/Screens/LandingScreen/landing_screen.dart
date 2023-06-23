@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-import 'package:silver_express_app/Screens/PrincipalScreen/principal_screen.dart';
+import 'package:silver_express_app/Screens/HomeScreen/home_screen.dart';
 
 class LandingScreen extends StatelessWidget {
   final Future<void> Function()? login;
@@ -64,7 +64,7 @@ class LandingScreen extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const PrincipalScreen()),
+                          builder: (context) => const Home()),
                     );
                   },
                   child: const Text(
