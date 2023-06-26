@@ -5,14 +5,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:go_router/go_router.dart';
-
+import 'package:silver/theme/app_theme.dart';
 import 'Routes/app_routes.dart';
-import 'Theme/app_theme.dart';
-
-
-
-
-
 
 class MyApp extends StatefulWidget {
   final Auth0? auth0;
@@ -57,7 +51,7 @@ class _MyAppState extends State<MyApp> {
       } else {
         var credentials = await auth0
             .webAuthentication(scheme: dotenv.env['AUTH0_CUSTOM_SCHEME'])
-            .login(); 
+            .login();
 
         final String id = credentials.user.sub;
         final String? email = credentials.user.email;
@@ -68,7 +62,6 @@ class _MyAppState extends State<MyApp> {
         await _dio.post(endpoint,
             data: {id: id, name: name, email: email},
             options: Options(contentType: 'application/json'));
-
 
         // ignore: use_build_context_synchronously
         context.push('/home');
@@ -109,8 +102,6 @@ class _MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: false,
         theme:
             AppTheme(selectedColor: 1, brightness: Brightness.dark).getTheme(),
-        routerConfig: AppRouter(login: login).appRouter()
-    );
+        routerConfig: AppRouter(login: login).appRouter());
   }
-
 }

@@ -1,9 +1,8 @@
 import 'package:go_router/go_router.dart';
-import 'package:silverexpress/Screens/HomeScreen/home_screen.dart';
+import '../Screens/HomeScreen/home_screen.dart';
 import '../Screens/LandingScreen/landing_screen.dart';
 
 class AppRouter {
-
   final Future<void> Function()? login;
 
   AppRouter({this.login});
@@ -22,5 +21,4 @@ class AppRouter {
       ),
     ]);
   }
-
 }
