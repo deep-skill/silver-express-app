@@ -1,4 +1,4 @@
-package com.example.silver_express_app
+package com.example.silverexpress
 
 import io.flutter.embedding.android.FlutterActivity
 
