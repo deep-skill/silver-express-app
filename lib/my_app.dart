@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:silver_express_app/Screens/LandingScreen/landing_screen.dart';
-import 'package:silver_express_app/Screens/PrincipalScreen/principal_screen.dart';
+import 'package:silver_express_app/Screens/HomeScreen/home_screen.dart';
 
 class MyApp extends StatefulWidget {
   final Auth0? auth0;
@@ -82,7 +82,7 @@ class _MyAppState extends State<MyApp> {
       initialRoute: '/',
       routes: {
         '/': (context) => LandingScreen(login: login),
-        '/principal': (context) => const PrincipalScreen()
+        '/principal': (context) => const Home()
       },
     );
   }
