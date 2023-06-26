@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "silver_express_app" "\0"
+            VALUE "FileDescription", "silverexpress" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "silver_express_app" "\0"
+            VALUE "InternalName", "silverexpress" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2023 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "silver_express_app.exe" "\0"
-            VALUE "ProductName", "silver_express_app" "\0"
+            VALUE "OriginalFilename", "silverexpress.exe" "\0"
+            VALUE "ProductName", "silverexpress" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

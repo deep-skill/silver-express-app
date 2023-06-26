@@ -1,14 +1,17 @@
+import 'package:flutter/material.dart';
 import 'package:auth0_flutter/auth0_flutter.dart';
 import 'package:auth0_flutter/auth0_flutter_web.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:go_router/go_router.dart';
-import 'package:silver_express_app/Screens/LandingScreen/landing_screen.dart';
-import 'package:silver_express_app/Screens/PrincipalScreen/principal_screen.dart';
-import 'package:silver_express_app/router/app_router.dart';
-import 'package:silver_express_app/theme/app_theme.dart';
+
+import 'Routes/app_routes.dart';
+import 'Theme/app_theme.dart';
+
+
+
+
 
 class MyApp extends StatefulWidget {
   final Auth0? auth0;
@@ -53,7 +56,7 @@ class _MyAppState extends State<MyApp> {
       } else {
         var credentials = await auth0
             .webAuthentication(scheme: dotenv.env['AUTH0_CUSTOM_SCHEME'])
-            .login();
+            .login(); 
 
         final String id = credentials.user.sub;
         final String? email = credentials.user.email;

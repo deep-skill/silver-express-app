@@ -1,13 +1,12 @@
 import 'package:go_router/go_router.dart';
-import 'package:silver_express_app/Screens/LandingScreen/landing_screen.dart';
-import 'package:silver_express_app/Screens/PrincipalScreen/principal_screen.dart';
-import 'package:silver_express_app/my_app.dart';
+import 'package:silverexpress/Screens/HomeScreen/home_screen.dart';
+import '../Screens/LandingScreen/landing_screen.dart';
 
 class AppRouter {
 
   final Future<void> Function()? login;
 
-  AppRouter({required this.login});
+  AppRouter({this.login});
 
   GoRouter appRouter() {
     return GoRouter(initialLocation: '/', routes: [
@@ -19,7 +18,7 @@ class AppRouter {
       GoRoute(
         name: 'principal',
         path: '/home',
-        builder: (context, state) => const PrincipalScreen(),
+        builder: (context, state) => const HomeScreen(),
       ),
     ]);
   }

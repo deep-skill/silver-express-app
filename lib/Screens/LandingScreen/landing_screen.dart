@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:go_router/go_router.dart';
 
 class LandingScreen extends StatelessWidget {
   final Future<void> Function()? login;
@@ -54,6 +55,16 @@ class LandingScreen extends StatelessWidget {
               const SizedBox(
                 height: 50,
               ),
+              ElevatedButton(
+                  style: ButtonStyle(
+                      fixedSize: MaterialStateProperty.all(const Size(270, 50)),
+                      backgroundColor: const MaterialStatePropertyAll(
+                          Color.fromARGB(255, 0, 104, 24))),
+                  onPressed: () => context.go('/home'),
+                  child: const Text(
+                    'Entrar',
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  )),
               ElevatedButton(
                   style: ButtonStyle(
                       fixedSize: MaterialStateProperty.all(const Size(270, 50)),
