@@ -4,24 +4,26 @@ import 'package:auth0_flutter/auth0_flutter_web.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:silver/Providers/theme_providers.dart';
 import 'package:silver/theme/app_theme.dart';
 import 'Routes/app_routes.dart';
 
-class MyApp extends StatefulWidget {
+class MyApp extends ConsumerStatefulWidget {
   final Auth0? auth0;
   const MyApp({this.auth0, final Key? key}) : super(key: key);
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  MyAppState createState() => MyAppState();
 
   static void login(BuildContext context) {
-    final state = context.findAncestorStateOfType<_MyAppState>();
+    final state = context.findAncestorStateOfType<MyAppState>();
     state?.login();
   }
 }
 
-class _MyAppState extends State<MyApp> {
+class MyAppState extends ConsumerState<MyApp> {
   // ignore: unused_field
   UserProfile? _user;
   final _dio = Dio();
@@ -98,10 +100,11 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(final BuildContext context) {
+    final AppTheme appTheme = ref.watch(themeProvider);
+
     return MaterialApp.router(
         debugShowCheckedModeBanner: false,
-        theme:
-            AppTheme(selectedColor: 1, brightness: Brightness.dark).getTheme(),
+        theme: appTheme.getTheme(),
         routerConfig: AppRouter(login: login).appRouter());
   }
 }

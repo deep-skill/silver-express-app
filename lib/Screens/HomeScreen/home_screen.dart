@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:silver/Providers/providers.dart';
 
-
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  HomeScreenState createState() => HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-
+class HomeScreenState extends ConsumerState<HomeScreen> {
   int currentPageIndex = 0;
   String appBarTitle = 'Home';
 
   @override
   Widget build(BuildContext context) {
+    final isDark = ref.watch(themeProvider).isDark;
+    final colorList = ref.watch(colorListProvider);
+
     Widget page;
     switch (currentPageIndex) {
       case 0:
@@ -47,10 +50,36 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(appBarTitle),
-        centerTitle: true,
-        automaticallyImplyLeading: false,
-      ),
+          title: Text(appBarTitle),
+          centerTitle: true,
+          automaticallyImplyLeading: false,
+          actions: [
+            IconButton(
+              icon: Icon(isDark
+                  ? Icons.dark_mode_outlined
+                  : Icons.light_mode_outlined),
+              onPressed: () {
+                ref.read(themeProvider.notifier).changeDarkMode();
+              },
+            ),
+            PopupMenuButton<int>(
+                icon: const Icon(Icons.color_lens_outlined),
+                onSelected: (index) {
+                  ref.read(themeProvider.notifier).changeColors(index);
+                },
+                itemBuilder: (BuildContext context) {
+                  return colorList.asMap().entries.map((entry) {
+                    final index = entry.key;
+                    final color = entry.value;
+                    return PopupMenuItem<int>(
+                      value: index,
+                      child: ListTile(
+                        leading: Icon(Icons.circle, color: color),
+                      ),
+                    );
+                  }).toList();
+                })
+          ]),
       bottomNavigationBar: NavigationBar(
         labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
         selectedIndex: currentPageIndex,
@@ -88,4 +117,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
