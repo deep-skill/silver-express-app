@@ -5,7 +5,6 @@ import '../Screens/LandingScreen/landing_screen.dart';
 import '../Screens/UserScreen/Client/client_create_screen.dart';
 import '../Screens/UserScreen/Client/client_screen.dart';
 import '../Screens/UserScreen/Driver/driver_screen.dart';
-import '../Screens/UserScreen/type_user_screen.dart';
 
 class AppRouter {
 

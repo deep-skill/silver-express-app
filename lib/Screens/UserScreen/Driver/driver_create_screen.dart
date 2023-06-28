@@ -7,7 +7,7 @@ class DriverCreate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
-
+    
     return Scaffold(
       appBar: AppBar(
         title: const Text('Registrar Nuevo Conductor'),
@@ -59,7 +59,7 @@ Widget body(BuildContext context, Size screenSize){
                   ),
                       
                   onPressed: () {
-                    context.go('/conductores');
+                    _showAlert(context);
                   },
                   child: const Text('Registrar', style: TextStyle(fontSize: 17, color: Colors.white))
                 ),
@@ -177,4 +177,31 @@ Widget AdressInput(){
           ),
       ),
     );
+}
+
+void _showAlert(BuildContext context){
+  showDialog(
+    barrierDismissible: false,
+    context: context,
+    builder: (BuildContext context) { 
+      return AlertDialog(
+        title: const Text('Registrar'),
+        content: const Text('¿Estas Seguro Que Desea Registrar Este Conductor?'),
+        actions: [
+        TextButton(
+          onPressed: () {
+            context.pop(context);
+          },
+          child: const Text('Volver'),
+        ),
+        TextButton(
+          onPressed: () {
+            context.go('/conductores');
+          },
+          child: const Text('Confirmar'),
+        ),
+      ],
+      );
+    }
+  );
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../../HomeScreen/home_screen.dart';
 
 class ClientScreen extends StatelessWidget {
   const ClientScreen({super.key});
@@ -12,6 +13,7 @@ class ClientScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Gestion De Clientes'),
       ),
+
 
       body: Container(
         child: body(context, screenSize)
@@ -70,9 +72,10 @@ Widget buttonCreate(BuildContext context) {
 
   return FloatingActionButton(
     onPressed: () {
-      context.go('/crearClientes');
+      context.push('/crearClientes');
     },
     backgroundColor: Colors.blueAccent,
     child: const Icon(Icons.add),
   );
+  
 }

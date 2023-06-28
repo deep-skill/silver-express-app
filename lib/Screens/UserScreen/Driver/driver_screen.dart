@@ -35,7 +35,7 @@ Widget body(BuildContext context, screenSize){
               child: Container_View()
             ),
 
-            SizedBox(height: 25.0),
+            const SizedBox(height: 25.0),
 
             Padding(
                 padding: const EdgeInsets.only(bottom: 26.0, right: 25.0),
