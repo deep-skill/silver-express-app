@@ -25,9 +25,9 @@ class _HomeScreenState extends State<HomeScreen> {
         });
         break;
       case 1:
-        page = const TypeUser();
+        page = const TypeUser(selectedItem: '',);
         setState(() {
-          appBarTitle = 'Tipos De Usuarios';
+          appBarTitle = 'Usuarios';
         });
         break;
       case 2:
