@@ -61,7 +61,7 @@ class LandingScreen extends StatelessWidget {
                       fixedSize: MaterialStateProperty.all(const Size(270, 50)),
                       backgroundColor: const MaterialStatePropertyAll(
                           Color.fromARGB(255, 0, 104, 24))),
-                  onPressed: () => context.go('/home'),
+                  onPressed: () => context.push('/home'),
                   child: const Text(
                     'Entrar',
                     style: TextStyle(color: Colors.white, fontSize: 20),

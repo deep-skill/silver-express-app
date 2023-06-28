@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../UserScreen/type_user_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -24,9 +25,9 @@ class _HomeScreenState extends State<HomeScreen> {
         });
         break;
       case 1:
-        page = const Text('vista 1');
+        page = const TypeUser();
         setState(() {
-          appBarTitle = 'Usuarios';
+          appBarTitle = 'Tipos De Usuarios';
         });
         break;
       case 2:
@@ -88,4 +89,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
