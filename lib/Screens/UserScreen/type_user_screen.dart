@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:silver/Routes/app_routes.dart';
 
-class TypeUser extends StatelessWidget {
+class TypeUser extends ConsumerWidget {
   final String selectedItem;
 
   const TypeUser({super.key, required this.selectedItem});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Tipos De Usuarios'),
@@ -22,7 +23,7 @@ class TypeUser extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 45, vertical: 23)),
               onPressed: () {
-                context.go('/clientes');
+                ref.read(appRouterProvider).go('/clientes');
               },
               child: const Row(
                 children: [Icon(Icons.person_pin), Text('Clientes')],
@@ -35,7 +36,7 @@ class TypeUser extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 45, vertical: 23)),
               onPressed: () {
-                context.go('/conductores');
+                ref.read(appRouterProvider).go('/conductores');
               },
               child: const Row(
                 children: [Icon(Icons.drive_eta_sharp), Text('Conductores')],
