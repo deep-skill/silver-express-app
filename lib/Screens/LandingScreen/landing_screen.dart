@@ -1,13 +1,15 @@
+import 'package:auth0_flutter/auth0_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:go_router/go_router.dart';
 
-
 class LandingScreen extends StatelessWidget {
   final Future<void> Function()? login;
+  final Future<void> Function()? logout;
 
-  const LandingScreen({Key? key, required this.login}) : super(key: key);
+  LandingScreen({Key? key, required this.login, required this.logout})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -72,9 +74,18 @@ class LandingScreen extends StatelessWidget {
                       backgroundColor: const MaterialStatePropertyAll(
                           Color.fromARGB(255, 0, 104, 24))),
                   onPressed: () => login!(),
-
                   child: const Text(
                     'Comenzemos el Viaje',
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  )),
+              ElevatedButton(
+                  style: ButtonStyle(
+                      fixedSize: MaterialStateProperty.all(const Size(270, 50)),
+                      backgroundColor: const MaterialStatePropertyAll(
+                          Color.fromARGB(255, 0, 104, 24))),
+                  onPressed: () => logout!(),
+                  child: const Text(
+                    'Paremos el Viaje',
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   )),
               const SizedBox(
