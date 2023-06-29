@@ -1,36 +1,30 @@
 import 'package:flutter/material.dart';
 // import 'package:auth0_flutter/auth0_flutter.dart';
 // import 'package:auth0_flutter/auth0_flutter_web.dart';
-import 'package:dio/dio.dart';
+// import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:silver/theme/app_theme.dart';
 
 import 'Routes/app_routes.dart';
-import 'Theme/app_theme.dart';
 
-
-
-
-
-
-class MyApp extends StatefulWidget {
+class MyApp extends ConsumerStatefulWidget {
   // final Auth0? auth0;
-  const MyApp({ final Key? key}) : super(key: key);
+  const MyApp({final Key? key}) : super(key: key);
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  MyAppState createState() => MyAppState();
 
   static void login(BuildContext context) {
-    final state = context.findAncestorStateOfType<_MyAppState>();
+    final state = context.findAncestorStateOfType<MyAppState>();
     state?.login();
   }
 }
 
-class _MyAppState extends State<MyApp> {
+class MyAppState extends ConsumerState<MyApp> {
   // ignore: unused_field
   // UserProfile? _user;
-  final _dio = Dio();
+  // final _dio = Dio();
 
   // late Auth0 auth0;
   // late Auth0Web auth0Web;
@@ -57,7 +51,7 @@ class _MyAppState extends State<MyApp> {
       // } else {
       //   var credentials = await auth0
       //       .webAuthentication(scheme: dotenv.env['AUTH0_CUSTOM_SCHEME'])
-      //       .login(); 
+      //       .login();
 
       //   final String id = credentials.user.sub;
       //   final String? email = credentials.user.email;
@@ -68,7 +62,6 @@ class _MyAppState extends State<MyApp> {
       //   await _dio.post(endpoint,
       //       data: {id: id, name: name, email: email},
       //       options: Options(contentType: 'application/json'));
-
 
       //   // ignore: use_build_context_synchronously
       //   context.push('/home');
@@ -105,12 +98,12 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(final BuildContext context) {
+    final appRouter = ref.watch(appRouterProvider);
+
     return MaterialApp.router(
         debugShowCheckedModeBanner: false,
         theme:
             AppTheme(selectedColor: 1, brightness: Brightness.dark).getTheme(),
-        routerConfig: AppRouter(login: login).appRouter()
-    );
+        routerConfig: appRouter);
   }
-
 }

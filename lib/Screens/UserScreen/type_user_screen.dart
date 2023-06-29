@@ -1,66 +1,50 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:silver/Screens/UserScreen/Client/client_screen.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:silver/Routes/app_routes.dart';
 
-class TypeUser extends StatelessWidget {
-  const TypeUser({super.key});
+class TypeUser extends ConsumerWidget {
+  final String selectedItem;
+
+  const TypeUser({super.key, required this.selectedItem});
 
   @override
-  Widget build(BuildContext context) {
-    final colors = Theme.of(context).colorScheme;
-    final size = MediaQuery.of(context).size;
-
+  Widget build(BuildContext context, ref) {
     return Scaffold(
-      
+      appBar: AppBar(
+        title: const Text('Tipos De Usuarios'),
+      ),
       body: Padding(
         padding: const EdgeInsets.only(top: 75.0),
         child: Column(
-            children: [
-                ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStatePropertyAll(colors.primary),
-                    maximumSize: MaterialStateProperty.all(Size(size.width * 0.8, size.height * 10))
-                  ),
-                  onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const ClientScreen(),
-                        ),
-                      );
-                  },
-                  
-                  child: Row(
-                    children: [
-                      const Icon(Icons.person_pin),
-                      const SizedBox(width: 15),
-                      Text('Clientes', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25, color: colors.onPrimary),)
-                    ],
-                  ),
-                  
-                ),
-      
-                const SizedBox(height: 45.0),
-      
-                ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStatePropertyAll(colors.primary),
-                    maximumSize: MaterialStateProperty.all(Size(size.width * 0.8, size.height * 10))
-                  ),
-                  onPressed: () {
-                    context.push('/conductores');
-                  },
-                  child: Row(
-                    children: [
-                      const Icon(Icons.drive_eta_sharp),
-                      const SizedBox(width: 15),
-                      Text('Conductores', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25, color: colors.onPrimary),)
-                    ],
-                  ),
-                ),
-            ],
-            
-          ),
+          children: [
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blueAccent,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 45, vertical: 23)),
+              onPressed: () {
+                ref.read(appRouterProvider).go('/clientes');
+              },
+              child: const Row(
+                children: [Icon(Icons.person_pin), Text('Clientes')],
+              ),
+            ),
+            const SizedBox(height: 45.0),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blueAccent,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 45, vertical: 23)),
+              onPressed: () {
+                ref.read(appRouterProvider).go('/conductores');
+              },
+              child: const Row(
+                children: [Icon(Icons.drive_eta_sharp), Text('Conductores')],
+              ),
+            ),
+          ],
+        ),
       ),
-      );
+    );
   }
 }

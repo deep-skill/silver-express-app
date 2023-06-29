@@ -1,56 +1,61 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class ClientCreate extends StatelessWidget {
+import '../../../Routes/app_routes.dart';
+
+class ClientCreate extends ConsumerWidget {
   const ClientCreate({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final screenSize = MediaQuery.of(context).size;
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Registrar Nuevo Cliente'),
       ),
-      body: Container(child: Body(context, screenSize)),
+      body: Container(child: body(context, screenSize, ref)),
     );
   }
 }
 
-Widget Body(BuildContext context, Size screenSize) {
+Widget body(BuildContext context, Size screenSize, ref) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
       Expanded(
         child: Column(
           children: [
-            Container_View(context),
+            containerView(context),
             Padding(
               padding: const EdgeInsets.only(left: 80.0),
               child: Row(
                 children: [
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        primary: Color.fromARGB(255, 96, 126, 179),
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 45, vertical: 23),
-                        onPrimary: Color.fromARGB(255, 4, 94, 249),
+                        foregroundColor: const Color.fromARGB(255, 4, 94, 249),
+                        backgroundColor:
+                            const Color.fromARGB(255, 96, 126, 179),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 45, vertical: 23),
                       ),
                       onPressed: () {
-                        context.pop();
+                        context.go('/clientes');
                       },
                       child: const Text('Volver',
                           style: TextStyle(fontSize: 17, color: Colors.white))),
-                  SizedBox(width: 40.0),
+                  const SizedBox(width: 40.0),
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        primary: Color.fromARGB(255, 96, 126, 179),
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 45, vertical: 23),
-                        onPrimary: Color.fromARGB(255, 4, 94, 249),
+                        foregroundColor: const Color.fromARGB(255, 4, 94, 249),
+                        backgroundColor:
+                            const Color.fromARGB(255, 96, 126, 179),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 45, vertical: 23),
                       ),
                       onPressed: () {
-                        _showAlert(context);
+                        ref.read(appRouterProvider).pop();
                       },
                       child: const Text('Registrar',
                           style: TextStyle(fontSize: 17, color: Colors.white))),
@@ -64,34 +69,34 @@ Widget Body(BuildContext context, Size screenSize) {
   );
 }
 
-Widget Container_View(context) {
+Widget containerView(context) {
   return Padding(
-    padding: EdgeInsets.only(top: 50.0, bottom: 60.0),
+    padding: const EdgeInsets.only(top: 50.0, bottom: 60.0),
     child: Column(
       children: [
-        Center(
+        const Center(
             child: Text(
           'Formulario De Registro',
           style: TextStyle(fontSize: 30.0),
         )),
-        SizedBox(height: 25.0),
-        EmailInput(),
-        SizedBox(height: 25),
-        UserInput(),
-        SizedBox(height: 25),
-        EnterpriselInput(),
-        SizedBox(height: 25.0),
-        PhoneInput(),
-        SizedBox(height: 25),
-        AdressInput(),
+        const SizedBox(height: 25.0),
+        emailInput(),
+        const SizedBox(height: 25),
+        userInput(),
+        const SizedBox(height: 25),
+        enterpriselInput(),
+        const SizedBox(height: 25.0),
+        phoneInput(),
+        const SizedBox(height: 25),
+        adressInput(),
       ],
     ),
   );
 }
 
-Widget EmailInput() {
+Widget emailInput() {
   return Container(
-    padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
+    padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 5),
     child: const TextField(
       decoration: InputDecoration(
           hintText: 'Ingrese el correo electronico del cliente',
@@ -104,9 +109,9 @@ Widget EmailInput() {
   );
 }
 
-Widget UserInput() {
+Widget userInput() {
   return Container(
-    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
     child: const TextField(
       decoration: InputDecoration(
           hintText: 'Ingrese el nombre del cliente',
@@ -119,37 +124,37 @@ Widget UserInput() {
   );
 }
 
-Widget EnterpriselInput() {
+Widget enterpriselInput() {
   return Container(
-    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
     child: DropdownButtonFormField<String>(
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
           // hintText: 'Seleccione a la empresa que pertenece el cliente',
           fillColor: Color.fromARGB(255, 83, 79, 79),
           filled: true,
           border: OutlineInputBorder(),
           labelText: 'Seleccionar Empresa',
           labelStyle: TextStyle(color: Color.fromARGB(255, 255, 255, 255))),
-      items: [
+      items: const [
         DropdownMenuItem(
-          child: Text("B'MOBILE"),
           value: "B'MOBILE",
+          child: Text("B'MOBILE"),
         ),
         DropdownMenuItem(
-          child: Text("TMS"),
           value: "TMS",
+          child: Text("TMS"),
         ),
         DropdownMenuItem(
-          child: Text("LIMA EXPRESA"),
           value: "LIMA EXPRESA",
+          child: Text("LIMA EXPRESA"),
         ),
         DropdownMenuItem(
-          child: Text("OI-GMEC"),
           value: "OI-GMEC",
+          child: Text("OI-GMEC"),
         ),
         DropdownMenuItem(
-          child: Text("Persona Natural"),
           value: "Persona Natural",
+          child: Text("Persona Natural"),
         ),
       ],
       onChanged: (value) {
@@ -159,9 +164,9 @@ Widget EnterpriselInput() {
   );
 }
 
-Widget PhoneInput() {
+Widget phoneInput() {
   return Container(
-    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
     child: const TextField(
       decoration: InputDecoration(
           hintText: 'Ingrese el numero telefonico del cliente',
@@ -174,9 +179,9 @@ Widget PhoneInput() {
   );
 }
 
-Widget AdressInput() {
+Widget adressInput() {
   return Container(
-    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
     child: const TextField(
       decoration: InputDecoration(
           hintText: 'Ingrese la direccion del cliente',
@@ -187,31 +192,4 @@ Widget AdressInput() {
           labelStyle: TextStyle(color: Color.fromARGB(255, 255, 255, 255))),
     ),
   );
-}
-
-void _showAlert(BuildContext context) {
-  showDialog(
-      barrierDismissible: false,
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Registrar'),
-          content:
-              const Text('¿Estas Seguro Que Desea Registrar Este Cliente?'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                context.pop();
-              },
-              child: const Text('Volver'),
-            ),
-            TextButton(
-              onPressed: () {
-                context.push('/clientes');
-              },
-              child: const Text('Confirmar'),
-            ),
-          ],
-        );
-      });
 }
