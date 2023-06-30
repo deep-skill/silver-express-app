@@ -7,7 +7,6 @@ class ClientScreen extends ConsumerWidget {
   
   @override
   Widget build(BuildContext context, ref) {
-    final screenSize = MediaQuery.of(context).size;
 
     List<Client> clients = ref.watch(clientListProvider);
 
@@ -37,8 +36,8 @@ class ClientScreen extends ConsumerWidget {
                 title: Text("Nombre: ${client.name} - Empresa: ${client.enterprise}"),
                 subtitle: Text("Número: ${client.phoneNumber} - Correo: ${client.email}"),
                 leading: CircleAvatar(
-                  child: Text(client.name.substring(0,1)),
                   backgroundColor: const Color.fromRGBO(103, 58, 183, 1),
+                  child: Text(client.name.substring(0,1)),
                 ),
                 
               ),
@@ -92,7 +91,7 @@ Widget buttonCreate(BuildContext context, ref) {
 }
 
 void showAlert(BuildContext context, ref) {
-  var state = true;
+  var userState = false;
 
   showDialog(
     barrierDismissible: false,
@@ -104,7 +103,7 @@ void showAlert(BuildContext context, ref) {
           'Indica La Accion Que Desees Realizar',
           style: TextStyle(fontSize: 17),
         ),
-        actionsPadding: EdgeInsets.fromLTRB(24, 0, 24, 20),
+        actionsPadding: const EdgeInsets.fromLTRB(24, 0, 24, 20),
         buttonPadding: EdgeInsets.zero,
         actions: [
           Row(
@@ -125,7 +124,8 @@ void showAlert(BuildContext context, ref) {
               ),
               const SizedBox(width: 35),
               TextButton(
-                child: state ? const Icon(Icons.block) : Icon(Icons.check),
+                // ignore: dead_code
+                child: userState ? const Icon(Icons.block) : const Icon(Icons.check),
                 onPressed: () {
                   // Acción al presionar el botón de bloquear o desbloquear
                 },

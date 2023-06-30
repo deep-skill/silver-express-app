@@ -74,7 +74,7 @@ Widget emailInput(emailController) {
     padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 5),
     child: TextField(
       controller: emailController,
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
           hintText: 'Ingrese el correo electronico del cliente',
           fillColor: Color.fromARGB(255, 83, 79, 79),
           filled: true,
@@ -90,7 +90,7 @@ Widget userInput(nameController) {
     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
     child: TextField(
       controller: nameController,
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
           hintText: 'Ingrese el nombre del cliente',
           fillColor: Color.fromARGB(255, 83, 79, 79),
           filled: true,
@@ -102,7 +102,7 @@ Widget userInput(nameController) {
 }
 
 Widget enterpriselInput(enterpriseController) {
-  var selectedValue;
+  String? selectedValue;
 
   return Container(
     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
@@ -151,7 +151,7 @@ Widget phoneInput(phoneController) {
     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
     child: TextField(
       controller: phoneController,
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
           hintText: 'Ingrese el numero telefonico del cliente',
           fillColor: Color.fromARGB(255, 83, 79, 79),
           filled: true,
@@ -167,7 +167,7 @@ Widget addressInput(addressController) {
     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
     child: TextField(
       controller: addressController,
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
           hintText: 'Ingrese la direccion del cliente',
           fillColor: Color.fromARGB(255, 83, 79, 79),
           filled: true,

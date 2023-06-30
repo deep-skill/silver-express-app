@@ -17,7 +17,7 @@ class TypeUser extends ConsumerWidget {
           children: [
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                  backgroundColor: Color.fromRGBO(73, 10, 84, 1),
+                  backgroundColor: const Color.fromRGBO(73, 10, 84, 1),
                   padding:
                       const EdgeInsets.symmetric(horizontal: 45, vertical: 23)),
               onPressed: () {
@@ -33,7 +33,7 @@ class TypeUser extends ConsumerWidget {
             const SizedBox(height: 45.0),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                  backgroundColor: Color.fromRGBO(73, 10, 84, 1),
+                  backgroundColor: const Color.fromRGBO(73, 10, 84, 1),
                   padding:
                       const EdgeInsets.symmetric(horizontal: 45, vertical: 23)),
               onPressed: () {
