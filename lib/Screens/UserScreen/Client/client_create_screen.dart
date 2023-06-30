@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:silver/Screens/UserScreen/Client/client_screen.dart';
 
 import '../../../Routes/app_routes.dart';
 
@@ -27,41 +28,7 @@ Widget body(BuildContext context, Size screenSize, ref) {
       Expanded(
         child: Column(
           children: [
-            containerView(context),
-            Padding(
-              padding: const EdgeInsets.only(left: 80.0),
-              child: Row(
-                children: [
-                  ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        foregroundColor: const Color.fromARGB(255, 4, 94, 249),
-                        backgroundColor:
-                            const Color.fromARGB(255, 96, 126, 179),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 45, vertical: 23),
-                      ),
-                      onPressed: () {
-                        context.go('/clientes');
-                      },
-                      child: const Text('Volver',
-                          style: TextStyle(fontSize: 17, color: Colors.white))),
-                  const SizedBox(width: 40.0),
-                  ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        foregroundColor: const Color.fromARGB(255, 4, 94, 249),
-                        backgroundColor:
-                            const Color.fromARGB(255, 96, 126, 179),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 45, vertical: 23),
-                      ),
-                      onPressed: () {
-                        ref.read(appRouterProvider).pop();
-                      },
-                      child: const Text('Registrar',
-                          style: TextStyle(fontSize: 17, color: Colors.white))),
-                ],
-              ),
-            )
+            containerView(context, ref),
           ],
         ),
       ),
@@ -69,7 +36,13 @@ Widget body(BuildContext context, Size screenSize, ref) {
   );
 }
 
-Widget containerView(context) {
+Widget containerView(context, ref) {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController enterpriseController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController addressController = TextEditingController();
+
   return Padding(
     padding: const EdgeInsets.only(top: 50.0, bottom: 60.0),
     child: Column(
@@ -79,26 +52,29 @@ Widget containerView(context) {
           'Formulario De Registro',
           style: TextStyle(fontSize: 30.0),
         )),
-        const SizedBox(height: 25.0),
-        emailInput(),
         const SizedBox(height: 25),
-        userInput(),
+        emailInput(emailController),
         const SizedBox(height: 25),
-        enterpriselInput(),
-        const SizedBox(height: 25.0),
-        phoneInput(),
+        userInput(nameController),
         const SizedBox(height: 25),
-        adressInput(),
+        enterpriselInput(enterpriseController),
+        const SizedBox(height: 25),
+        phoneInput(phoneController),
+        const SizedBox(height: 25),
+        addressInput(addressController),
+        const SizedBox(height: 50),
+        buttons(context, ref, emailController, nameController, enterpriseController, phoneController, addressController)
       ],
     ),
   );
 }
 
-Widget emailInput() {
+Widget emailInput(emailController) {
   return Container(
     padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 5),
-    child: const TextField(
-      decoration: InputDecoration(
+    child: TextField(
+      controller: emailController,
+      decoration: const InputDecoration(
           hintText: 'Ingrese el correo electronico del cliente',
           fillColor: Color.fromARGB(255, 83, 79, 79),
           filled: true,
@@ -109,11 +85,12 @@ Widget emailInput() {
   );
 }
 
-Widget userInput() {
+Widget userInput(nameController) {
   return Container(
     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-    child: const TextField(
-      decoration: InputDecoration(
+    child: TextField(
+      controller: nameController,
+      decoration: const InputDecoration(
           hintText: 'Ingrese el nombre del cliente',
           fillColor: Color.fromARGB(255, 83, 79, 79),
           filled: true,
@@ -124,17 +101,20 @@ Widget userInput() {
   );
 }
 
-Widget enterpriselInput() {
+Widget enterpriselInput(enterpriseController) {
+  String? selectedValue;
+
   return Container(
     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
     child: DropdownButtonFormField<String>(
       decoration: const InputDecoration(
-          // hintText: 'Seleccione a la empresa que pertenece el cliente',
-          fillColor: Color.fromARGB(255, 83, 79, 79),
-          filled: true,
-          border: OutlineInputBorder(),
-          labelText: 'Seleccionar Empresa',
-          labelStyle: TextStyle(color: Color.fromARGB(255, 255, 255, 255))),
+        fillColor: Color.fromARGB(255, 83, 79, 79),
+        filled: true,
+        border: OutlineInputBorder(),
+        labelText: 'Seleccionar Empresa',
+        labelStyle: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+      ),
+      value: selectedValue,
       items: const [
         DropdownMenuItem(
           value: "B'MOBILE",
@@ -158,17 +138,20 @@ Widget enterpriselInput() {
         ),
       ],
       onChanged: (value) {
-        print('Seleccionaste: $value');
+        selectedValue = value;
+        enterpriseController.text = value;
       },
     ),
   );
 }
 
-Widget phoneInput() {
+
+Widget phoneInput(phoneController) {
   return Container(
     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-    child: const TextField(
-      decoration: InputDecoration(
+    child: TextField(
+      controller: phoneController,
+      decoration: const InputDecoration(
           hintText: 'Ingrese el numero telefonico del cliente',
           fillColor: Color.fromARGB(255, 83, 79, 79),
           filled: true,
@@ -179,11 +162,12 @@ Widget phoneInput() {
   );
 }
 
-Widget adressInput() {
+Widget addressInput(addressController) {
   return Container(
     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-    child: const TextField(
-      decoration: InputDecoration(
+    child: TextField(
+      controller: addressController,
+      decoration: const InputDecoration(
           hintText: 'Ingrese la direccion del cliente',
           fillColor: Color.fromARGB(255, 83, 79, 79),
           filled: true,
@@ -191,5 +175,77 @@ Widget adressInput() {
           labelText: 'Direccion',
           labelStyle: TextStyle(color: Color.fromARGB(255, 255, 255, 255))),
     ),
+  );
+}
+
+Widget buttons(BuildContext context, ref, emailController, nameController, enterpriseController, phoneController, addressController) {
+  return Padding(
+    padding: const EdgeInsets.only(left: 80.0),
+    child: Row(
+      children: [
+        ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              foregroundColor: const Color.fromARGB(255, 4, 94, 249),
+              backgroundColor: const Color.fromARGB(255, 96, 126, 179),
+              padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 23),
+            ),
+            onPressed: () {
+              context.go('/clientes');
+            },
+            child: const Text('Volver',
+                style: TextStyle(fontSize: 17, color: Colors.white))),
+        const SizedBox(width: 40.0),
+        ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              foregroundColor: const Color.fromARGB(255, 4, 94, 249),
+              backgroundColor: const Color.fromARGB(255, 96, 126, 179),
+              padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 23),
+            ),
+            onPressed: () {
+              showAlert(context, ref, emailController, nameController, enterpriseController, phoneController, addressController);
+            },
+            child: const Text('Registrar',
+                style: TextStyle(fontSize: 17, color: Colors.white))),
+      ],
+    ),
+  );
+}
+
+void showAlert(BuildContext context, ref, emailController, nameController, enterpriseController, phoneController, addressController){
+  showDialog(
+    barrierDismissible: false,
+    context: context, 
+    builder: (BuildContext context) { 
+      return AlertDialog(
+        title: const Text('Registrar'),
+        content: const Text('¿Estas Seguro Que Deseas Registrar Este Cliente?', style: TextStyle(fontSize: 17),),
+        actions: [
+          TextButton(
+            child: const Text('Cancelar'),
+            onPressed: (){
+              ref.read(appRouterProvider).pop();
+            },
+          ),
+
+          TextButton(
+            child: const Text('Confirmar'),
+            onPressed: () {
+              final newClient = Client(
+                email: emailController.text,
+                name: nameController.text,
+                enterprise: enterpriseController.text,
+                phoneNumber: phoneController.text,
+                address: addressController.text,
+              );
+
+              ref.read(clientListProvider).add(newClient);
+
+              // ref.read(appRouterProvider).pop();
+              ref.read(appRouterProvider).go('/clientes');
+            },
+          ),
+        ],
+      );
+    },
   );
 }
