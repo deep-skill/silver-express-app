@@ -10,7 +10,7 @@ const colorList = <Color>[
   Colors.lightBlue,
   Colors.cyan,
   Colors.teal,
-  Colors.green,
+  Color.fromRGBO(76, 175, 80, 1),
   Colors.lightGreen,
   Colors.lime,
   Colors.yellow,
