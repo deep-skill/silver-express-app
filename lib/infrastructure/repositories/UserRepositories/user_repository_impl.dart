@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:silver/infrastructure/Mappers/user_mapper.dart';
+import 'package:silver/infrastructure/Mappers/UserMappers/user_mapper.dart';
 
-import '../../domain/entities/user_entity.dart';
-import '../../domain/repositories/user_repository.dart';
+import '../../../domain/entities/UserEntity/user_entity.dart';
+import '../../../domain/repositories/UserRepository/user_repository.dart';
 
 class UserRepositoryImpl implements UserRepository {
   final Dio _dio = Dio(BaseOptions(baseUrl: 'http://localhost:7209'));

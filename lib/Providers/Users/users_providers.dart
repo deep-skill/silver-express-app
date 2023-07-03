@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../domain/entities/user_entity.dart';
-import '../../domain/repositories/user_repository.dart';
-import '../../infrastructure/repositories/user_repository_impl.dart';
+import '../../domain/entities/UserEntity/user_entity.dart';
+import '../../domain/repositories/UserRepository/user_repository.dart';
+import '../../infrastructure/repositories/UserRepositories/user_repository_impl.dart';
 
 final getUsersProvider =
     FutureProvider.autoDispose<List<UserEntity>>((ref) async {
@@ -39,6 +39,7 @@ final updateStatusProvider =
   }
 });
 
+// Bridge
 final userRepositoryProvider = Provider<UserRepository>((ref) {
   return UserRepositoryImpl();
 });

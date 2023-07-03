@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:silver/Routes/app_routes.dart';
 
 import '../../../Providers/Users/users_providers.dart';
-import '../../../domain/entities/user_entity.dart';
+import '../../../domain/entities/UserEntity/user_entity.dart';
 
 class ClientScreen extends ConsumerWidget {
   const ClientScreen({super.key});

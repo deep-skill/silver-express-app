@@ -221,7 +221,7 @@ void showAlert(BuildContext context, ref, emailController, nameController,
       return AlertDialog(
         title: const Text('Registrar'),
         content: const Text(
-          '¿Estas Seguro Que Deseas Registrar Este Cliente?',
+          '¿Estas Seguro Que Deseas Registrar Este Usuario?',
           style: TextStyle(fontSize: 17),
         ),
         actions: [

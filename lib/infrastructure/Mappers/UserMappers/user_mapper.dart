@@ -1,4 +1,4 @@
-import '../../domain/entities/user_entity.dart';
+import '../../../domain/entities/UserEntity/user_entity.dart';
 
 class UserMapper {
   static UserEntity fromMap(Map<String, dynamic> map) {
