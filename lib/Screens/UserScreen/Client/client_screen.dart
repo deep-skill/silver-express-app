@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:silver/Routes/app_routes.dart';
 
+import '../../../Providers/Users/users_providers.dart';
+import '../../../domain/entities/user_entity.dart';
+
 class ClientScreen extends ConsumerWidget {
   const ClientScreen({super.key});
-  
-  @override
-  Widget build(BuildContext context, ref) {
 
-    List<Client> clients = ref.watch(clientListProvider);
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final usersGet = ref.watch(getUsersProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -20,70 +22,54 @@ class ClientScreen extends ConsumerWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 30, bottom: 50),
-        child: ListView.builder(
-          itemCount: clients.length,
-          itemBuilder: (BuildContext context, int index) { 
-            final client = clients[index];
-            return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
-              child: ListTile(
-                onTap: () {
-                  // Acción al hacer clic en un cliente
+        child: usersGet.when(
+          data: (users) {
+            if (users.isEmpty) {
+              return const Center(
+                child: Text('No hay usuarios en este momento'),
+              );
+            } else {
+              return ListView.builder(
+                itemCount: users.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final UserEntity user = users[index];
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 15, horizontal: 25),
+                    child: ListTile(
+                      onTap: () {
+                        // Acción al hacer clic en un usuario
+                      },
+                      onLongPress: () {
+                        showAlert(context, ref);
+                      },
+                      title: Text(
+                          "Nombre: ${user.name} - Empresa: ACA IRIA LA EMPRESA CON LA RELACION"),
+                      subtitle:
+                          Text("Número: ${user.phone} - Correo: ${user.email}"),
+                      leading: CircleAvatar(
+                        backgroundColor: const Color.fromRGBO(103, 58, 183, 1),
+                        child: Text(user.name.substring(0, 1)),
+                      ),
+                    ),
+                  );
                 },
-                onLongPress: () {
-                  showAlert(context, ref);
-                },
-                title: Text("Nombre: ${client.name} - Empresa: ${client.enterprise}"),
-                subtitle: Text("Número: ${client.phoneNumber} - Correo: ${client.email}"),
-                leading: CircleAvatar(
-                  backgroundColor: const Color.fromRGBO(103, 58, 183, 1),
-                  child: Text(client.name.substring(0,1)),
-                ),
-                
-              ),
-            );
+              );
+            }
           },
-      
+          loading: () => const Center(child: CircularProgressIndicator()),
+          error: (error, stackTrace) => Center(child: Text('Error: $error')),
         ),
       ),
-
       floatingActionButton: buttonCreate(context, ref),
     );
   }
 }
 
-class Client {
-  final String email;
-  final String name;
-  final String enterprise;
-  final String phoneNumber;
-  final String address;
-
-  Client({required this.email, required this.name, required this.enterprise, required this.phoneNumber, required this.address});
-}
-
-final clientListProvider = Provider<List<Client>>((ref) {
-  List<Client> clients = [
-    Client(email: 'Isaac@gmail.com', name: 'Isaac', enterprise: 'TMS', phoneNumber: '1465632', address: 'Cra 40 #13'),
-    Client(email: 'Martin@gmail.com', name: 'Martin', enterprise: 'LIMA EXPRESA', phoneNumber: '1456455', address: 'Cll 51b #94'),
-    Client(email: 'Roque@gmail.com', name: 'Roque', enterprise: 'IO-GMEC', phoneNumber: '4563678', address: 'Cra 14a #104'),
-    Client(email: 'Bruno@gmail.com', name: 'Bruno', enterprise: "B'MOBILE", phoneNumber: '3234413', address: 'Cll 45 #12b'),
-    Client(email: 'Isaac@gmail.com', name: 'Isaac', enterprise: 'TMS', phoneNumber: '1465632', address: 'Cra 40 #13'),
-    Client(email: 'Martin@gmail.com', name: 'Martin', enterprise: 'LIMA EXPRESA', phoneNumber: '1456455', address: 'Cll 51b #94'),
-    Client(email: 'Roque@gmail.com', name: 'Roque', enterprise: 'IO-GMEC', phoneNumber: '4563678', address: 'Cra 14a #104'),
-    Client(email: 'Bruno@gmail.com', name: 'Bruno', enterprise: "B'MOBILE", phoneNumber: '3234413', address: 'Cll 45 #12b'),
-    Client(email: 'Isaac@gmail.com', name: 'Isaac', enterprise: 'TMS', phoneNumber: '1465632', address: 'Cra 40 #13'),
-    Client(email: 'Martin@gmail.com', name: 'Martin', enterprise: 'LIMA EXPRESA', phoneNumber: '1456455', address: 'Cll 51b #94'),
-    Client(email: 'Roque@gmail.com', name:  'Roque', enterprise: 'IO-GMEC', phoneNumber: '4563678', address: 'Cra 14a #104'),
-    Client(email: 'Bruno@gmail.com', name: 'Bruno', enterprise: "B'MOBILE", phoneNumber: '3234413', address: 'Cll 45 #12b'),
-  ];
-  return clients;
-});
-
 Widget buttonCreate(BuildContext context, ref) {
   return FloatingActionButton(
     onPressed: () {
-      ref.read(appRouterProvider).go('/crearClientes'); 
+      ref.read(appRouterProvider).go('/crearClientes');
     },
     backgroundColor: const Color.fromRGBO(0, 150, 136, 1),
     child: const Icon(Icons.add),
@@ -125,7 +111,10 @@ void showAlert(BuildContext context, ref) {
               const SizedBox(width: 35),
               TextButton(
                 // ignore: dead_code
-                child: userState ? const Icon(Icons.block) : const Icon(Icons.check),
+                child: userState
+                    // ignore: dead_code
+                    ? const Icon(Icons.block)
+                    : const Icon(Icons.check),
                 onPressed: () {
                   // Acción al presionar el botón de bloquear o desbloquear
                 },
