@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:silver/Screens/UserScreen/Client/client_screen.dart';
 
 import '../../../Routes/app_routes.dart';
 
@@ -63,7 +62,8 @@ Widget containerView(context, ref) {
         const SizedBox(height: 25),
         addressInput(addressController),
         const SizedBox(height: 50),
-        buttons(context, ref, emailController, nameController, enterpriseController, phoneController, addressController)
+        buttons(context, ref, emailController, nameController,
+            enterpriseController, phoneController, addressController)
       ],
     ),
   );
@@ -145,7 +145,6 @@ Widget enterpriselInput(enterpriseController) {
   );
 }
 
-
 Widget phoneInput(phoneController) {
   return Container(
     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
@@ -178,7 +177,8 @@ Widget addressInput(addressController) {
   );
 }
 
-Widget buttons(BuildContext context, ref, emailController, nameController, enterpriseController, phoneController, addressController) {
+Widget buttons(BuildContext context, ref, emailController, nameController,
+    enterpriseController, phoneController, addressController) {
   return Padding(
     padding: const EdgeInsets.only(left: 80.0),
     child: Row(
@@ -202,7 +202,8 @@ Widget buttons(BuildContext context, ref, emailController, nameController, enter
               padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 23),
             ),
             onPressed: () {
-              showAlert(context, ref, emailController, nameController, enterpriseController, phoneController, addressController);
+              showAlert(context, ref, emailController, nameController,
+                  enterpriseController, phoneController, addressController);
             },
             child: const Text('Registrar',
                 style: TextStyle(fontSize: 17, color: Colors.white))),
@@ -211,38 +212,28 @@ Widget buttons(BuildContext context, ref, emailController, nameController, enter
   );
 }
 
-void showAlert(BuildContext context, ref, emailController, nameController, enterpriseController, phoneController, addressController){
+void showAlert(BuildContext context, ref, emailController, nameController,
+    enterpriseController, phoneController, addressController) {
   showDialog(
     barrierDismissible: false,
-    context: context, 
-    builder: (BuildContext context) { 
+    context: context,
+    builder: (BuildContext context) {
       return AlertDialog(
         title: const Text('Registrar'),
-        content: const Text('¿Estas Seguro Que Deseas Registrar Este Cliente?', style: TextStyle(fontSize: 17),),
+        content: const Text(
+          '¿Estas Seguro Que Deseas Registrar Este Usuario?',
+          style: TextStyle(fontSize: 17),
+        ),
         actions: [
           TextButton(
             child: const Text('Cancelar'),
-            onPressed: (){
+            onPressed: () {
               ref.read(appRouterProvider).pop();
             },
           ),
-
           TextButton(
             child: const Text('Confirmar'),
-            onPressed: () {
-              final newClient = Client(
-                email: emailController.text,
-                name: nameController.text,
-                enterprise: enterpriseController.text,
-                phoneNumber: phoneController.text,
-                address: addressController.text,
-              );
-
-              ref.read(clientListProvider).add(newClient);
-
-              // ref.read(appRouterProvider).pop();
-              ref.read(appRouterProvider).go('/clientes');
-            },
+            onPressed: () {},
           ),
         ],
       );
