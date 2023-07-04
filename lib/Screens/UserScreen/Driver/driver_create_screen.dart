@@ -14,6 +14,12 @@ class DriverCreate extends ConsumerWidget {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Registrar Nuevo Conductor'),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              context.go('/clients');
+            },
+          )
         ),
         body: Container(child: body(context, screenSize, ref)));
   }
@@ -42,7 +48,7 @@ Widget containerView(context, ref) {
   final TextEditingController addressController = TextEditingController();
 
   return Padding(
-    padding: const EdgeInsets.only(top: 50.0, bottom: 60.0),
+    padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
     child: Column(
       children: [
         const Center(
@@ -50,17 +56,17 @@ Widget containerView(context, ref) {
           'Formulario De Registro',
           style: TextStyle(fontSize: 30.0),
         )),
-        const SizedBox(height: 25.0),
+        const SizedBox(height: 15.0),
         emailInput(emailController),
-        const SizedBox(height: 25),
+        const SizedBox(height: 15),
         userInput(nameController),
-        const SizedBox(height: 25),
+        const SizedBox(height: 15),
         poneInput(phoneController),
-        const SizedBox(height: 25),
+        const SizedBox(height: 15),
         licenseInput(licenseController),
-        const SizedBox(height: 25),
+        const SizedBox(height: 15),
         adressInput(addressController),
-        const SizedBox(height: 50),
+        const SizedBox(height: 15),
         buttons(context, ref, emailController, nameController, phoneController, licenseController, addressController)
       ],
     ),
@@ -149,8 +155,10 @@ Widget adressInput(addressController) {
 
 Widget buttons(BuildContext context, ref, emailController, nameController, phoneController, licenseController, addressController) {
   return Padding(
-    padding: const EdgeInsets.only(left: 80.0),
+    padding: const EdgeInsets.symmetric(horizontal: 5),
     child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+
       children: [ 
         ElevatedButton(
             style: ElevatedButton.styleFrom(
@@ -159,7 +167,7 @@ Widget buttons(BuildContext context, ref, emailController, nameController, phone
               padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 23),
             ),
             onPressed: () {
-              context.go('/conductores');
+              context.go('/drivers');
             },
             
             child: const Text('Volver', style: TextStyle(fontSize: 17, color: Colors.white))

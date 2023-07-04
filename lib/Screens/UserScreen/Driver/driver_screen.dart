@@ -33,7 +33,7 @@ class DriverScreen extends ConsumerWidget {
                 onLongPress: () {
                   showAlert(context, ref);
                 },
-                title: Text("Nombre: ${driver.name} - Licensia: ${driver.license}"),
+                title: Text("Nombre: ${driver.name} - Licencia: ${driver.license}"),
                 subtitle: Text("Número: ${driver.phoneNumber} - Correo: ${driver.email}"),
                 leading: CircleAvatar(
                   backgroundColor: const Color.fromRGBO(103, 58, 183, 1),
@@ -55,7 +55,7 @@ class DriverScreen extends ConsumerWidget {
 Widget buttonCreate(BuildContext context, ref) {
   return FloatingActionButton(
     onPressed: () {
-      ref.read(appRouterProvider).go('/crearConductores'); 
+      ref.read(appRouterProvider).go('/createDriver'); 
     },
     backgroundColor: const Color.fromRGBO(0, 150, 136, 1),
     child: const Icon(Icons.add),

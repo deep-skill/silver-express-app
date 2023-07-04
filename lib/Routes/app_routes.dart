@@ -6,7 +6,6 @@ import '../Screens/UserScreen/Client/client_create_screen.dart';
 import '../Screens/UserScreen/Client/client_screen.dart';
 import '../Screens/screens.dart';
 
-// * Usamos un Provider para agregar las rutas de todas las apps
 final appRouterProvider = Provider<GoRouter>((ref) {
   return GoRouter(initialLocation: '/', routes: [
     GoRoute(
@@ -15,28 +14,28 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       builder: (context, state) => const LandingScreen(),
     ),
     GoRoute(
-      name: 'principal',
+      name: 'home',
       path: '/home',
       builder: (context, state) => const HomeScreen(),
     ),
     GoRoute(
-      name: 'clientes',
-      path: '/clientes',
+      name: 'clients',
+      path: '/clients',
       builder: (context, state) => const ClientScreen(),
     ),
     GoRoute(
-      name: 'crearClientes',
-      path: '/crearClientes',
+      name: 'createClient',
+      path: '/createClient',
       builder: (context, state) => const ClientCreate(),
     ),
     GoRoute(
-      name: 'conductores',
-      path: '/conductores',
+      name: 'drivers',
+      path: '/drivers',
       builder: (context, state) => const DriverScreen(),
     ),
     GoRoute(
-      name: 'crearConductores',
-      path: '/crearConductores',
+      name: 'createDriver',
+      path: '/createDriver',
       builder: (context, state) => const DriverCreate(),
     ),
   ]);

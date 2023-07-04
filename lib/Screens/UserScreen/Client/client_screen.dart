@@ -18,7 +18,7 @@ class ClientScreen extends ConsumerWidget {
           icon: const Icon(Icons.arrow_back),
           onPressed: () => ref.read(appRouterProvider).go('/home'),
         ),
-        title: const Text('Gestion De Clientes'),
+        title: const Text('Gestion de Clientes'),
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 30, bottom: 50),
@@ -26,7 +26,7 @@ class ClientScreen extends ConsumerWidget {
           data: (users) {
             if (users.isEmpty) {
               return const Center(
-                child: Text('No hay usuarios en este momento'),
+                child: Text('No hay usuarios disponibles'),
               );
             } else {
               return ListView.builder(
@@ -69,7 +69,7 @@ class ClientScreen extends ConsumerWidget {
 Widget buttonCreate(BuildContext context, ref) {
   return FloatingActionButton(
     onPressed: () {
-      ref.read(appRouterProvider).go('/crearClientes');
+      ref.read(appRouterProvider).go('/createClient');
     },
     backgroundColor: const Color.fromRGBO(0, 150, 136, 1),
     child: const Icon(Icons.add),
@@ -84,9 +84,9 @@ void showAlert(BuildContext context, ref) {
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: const Text('Acciones', textAlign: TextAlign.center),
+        title: const Text('Actions', textAlign: TextAlign.center),
         content: const Text(
-          'Indica La Accion Que Desees Realizar',
+          '¿Cuál acción desea realizar?',
           style: TextStyle(fontSize: 17),
         ),
         actionsPadding: const EdgeInsets.fromLTRB(24, 0, 24, 20),
