@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../TripsScreen/trips_screen.dart';
 import '../UserScreen/type_user_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -31,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
         });
         break;
       case 2:
-        page = const Text('vista 2');
+        page = const Trips(selectedItem: '',);
         setState(() {
           appBarTitle = 'Viajes';
         });

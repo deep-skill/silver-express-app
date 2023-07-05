@@ -13,9 +13,16 @@ class ClientCreate extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Registrar Nuevo Cliente'),
+          title: const Text('Crear nuevo cliente'),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              context.go('/clients');
+            },
+          )),
+      body: Container(
+        child: body(context, screenSize, ref),
       ),
-      body: Container(child: body(context, screenSize, ref)),
     );
   }
 }
@@ -43,25 +50,25 @@ Widget containerView(context, ref) {
   final TextEditingController addressController = TextEditingController();
 
   return Padding(
-    padding: const EdgeInsets.only(top: 50.0, bottom: 60.0),
+    padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
     child: Column(
       children: [
         const Center(
             child: Text(
-          'Formulario De Registro',
+          'Formulario de registro',
           style: TextStyle(fontSize: 30.0),
         )),
-        const SizedBox(height: 25),
+        const SizedBox(height: 15),
         emailInput(emailController),
-        const SizedBox(height: 25),
+        const SizedBox(height: 15),
         userInput(nameController),
-        const SizedBox(height: 25),
+        const SizedBox(height: 15),
         enterpriselInput(enterpriseController),
-        const SizedBox(height: 25),
+        const SizedBox(height: 15),
         phoneInput(phoneController),
-        const SizedBox(height: 25),
+        const SizedBox(height: 15),
         addressInput(addressController),
-        const SizedBox(height: 50),
+        const SizedBox(height: 15),
         buttons(context, ref, emailController, nameController,
             enterpriseController, phoneController, addressController)
       ],
@@ -75,7 +82,7 @@ Widget emailInput(emailController) {
     child: TextField(
       controller: emailController,
       decoration: const InputDecoration(
-          hintText: 'Ingrese el correo electronico del cliente',
+          hintText: 'Inserte email del cliente',
           fillColor: Color.fromARGB(255, 83, 79, 79),
           filled: true,
           border: OutlineInputBorder(),
@@ -91,7 +98,7 @@ Widget userInput(nameController) {
     child: TextField(
       controller: nameController,
       decoration: const InputDecoration(
-          hintText: 'Ingrese el nombre del cliente',
+          hintText: 'Ingrese nombre del cliente',
           fillColor: Color.fromARGB(255, 83, 79, 79),
           filled: true,
           border: OutlineInputBorder(),
@@ -111,7 +118,7 @@ Widget enterpriselInput(enterpriseController) {
         fillColor: Color.fromARGB(255, 83, 79, 79),
         filled: true,
         border: OutlineInputBorder(),
-        labelText: 'Seleccionar Empresa',
+        labelText: 'Seleccione empresa',
         labelStyle: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
       ),
       value: selectedValue,
@@ -151,11 +158,11 @@ Widget phoneInput(phoneController) {
     child: TextField(
       controller: phoneController,
       decoration: const InputDecoration(
-          hintText: 'Ingrese el numero telefonico del cliente',
+          hintText: 'Ingrese el teléfono del cliente',
           fillColor: Color.fromARGB(255, 83, 79, 79),
           filled: true,
           border: OutlineInputBorder(),
-          labelText: 'Numero',
+          labelText: 'Telefono',
           labelStyle: TextStyle(color: Color.fromARGB(255, 255, 255, 255))),
     ),
   );
@@ -167,11 +174,11 @@ Widget addressInput(addressController) {
     child: TextField(
       controller: addressController,
       decoration: const InputDecoration(
-          hintText: 'Ingrese la direccion del cliente',
+          hintText: 'Ingrese la dirección del cliente',
           fillColor: Color.fromARGB(255, 83, 79, 79),
           filled: true,
           border: OutlineInputBorder(),
-          labelText: 'Direccion',
+          labelText: 'Dirección',
           labelStyle: TextStyle(color: Color.fromARGB(255, 255, 255, 255))),
     ),
   );
@@ -180,8 +187,9 @@ Widget addressInput(addressController) {
 Widget buttons(BuildContext context, ref, emailController, nameController,
     enterpriseController, phoneController, addressController) {
   return Padding(
-    padding: const EdgeInsets.only(left: 80.0),
+    padding: const EdgeInsets.symmetric(horizontal: 5),
     child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         ElevatedButton(
             style: ElevatedButton.styleFrom(
@@ -190,7 +198,7 @@ Widget buttons(BuildContext context, ref, emailController, nameController,
               padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 23),
             ),
             onPressed: () {
-              context.go('/clientes');
+              context.go('/clients');
             },
             child: const Text('Volver',
                 style: TextStyle(fontSize: 17, color: Colors.white))),
@@ -221,7 +229,7 @@ void showAlert(BuildContext context, ref, emailController, nameController,
       return AlertDialog(
         title: const Text('Registrar'),
         content: const Text(
-          '¿Estas Seguro Que Deseas Registrar Este Usuario?',
+          'Confirmar la creación del cliente',
           style: TextStyle(fontSize: 17),
         ),
         actions: [
