@@ -1,10 +1,10 @@
 import 'package:go_router/go_router.dart';
 import 'package:riverpod/riverpod.dart';
-import 'package:silver/Screens/UserScreen/Driver/driver_create_screen.dart';
+import 'package:silver/presentations/screens/user_screen/driver/driver_create_screen.dart';
 
-import '../Screens/UserScreen/Client/client_create_screen.dart';
-import '../Screens/UserScreen/Client/client_screen.dart';
-import '../Screens/screens.dart';
+import '../../presentations/screens/user_screen/client/client_create_screen.dart';
+import '../../presentations/screens/user_screen/client/client_screen.dart';
+import '../../presentations/screens/screens.dart';
 
 final appRouterProvider = Provider<GoRouter>((ref) {
   return GoRouter(initialLocation: '/', routes: [

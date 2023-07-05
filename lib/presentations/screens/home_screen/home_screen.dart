@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../TripsScreen/trips_screen.dart';
-import '../UserScreen/type_user_screen.dart';
+import '../trips_screen/trips_screen.dart';
+import '../user_screen/type_user_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -11,7 +11,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   int currentPageIndex = 0;
   String appBarTitle = 'Home';
 
@@ -26,13 +25,17 @@ class _HomeScreenState extends State<HomeScreen> {
         });
         break;
       case 1:
-        page = const TypeUser(selectedItem: '',);
+        page = const TypeUser(
+          selectedItem: '',
+        );
         setState(() {
           appBarTitle = 'Usuarios';
         });
         break;
       case 2:
-        page = const Trips(selectedItem: '',);
+        page = const Trips(
+          selectedItem: '',
+        );
         setState(() {
           appBarTitle = 'Viajes';
         });

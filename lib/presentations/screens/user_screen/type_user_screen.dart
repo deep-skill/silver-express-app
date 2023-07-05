@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:silver/Routes/app_routes.dart';
+import 'package:silver/config/routes/app_routes.dart';
 
 class TypeUser extends ConsumerWidget {
   final String selectedItem;

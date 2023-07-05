@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 // import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:silver/theme/app_theme.dart';
+import 'package:silver/config/theme/app_theme.dart';
 
-import 'Routes/app_routes.dart';
+import 'config/routes/app_routes.dart';
 
 class MyApp extends ConsumerStatefulWidget {
   // final Auth0? auth0;

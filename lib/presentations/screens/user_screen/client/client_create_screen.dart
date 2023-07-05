@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../Routes/app_routes.dart';
+import '../../../../config/routes/app_routes.dart';
 
 class ClientCreate extends ConsumerWidget {
   const ClientCreate({super.key});

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:silver/Routes/app_routes.dart';
+import 'package:silver/config/routes/app_routes.dart';
 
-import '../../../Providers/Users/users_providers.dart';
-import '../../../domain/entities/UserEntity/user_entity.dart';
+import '../../../../providers/users/users_providers.dart';
+import '../../../../domain/entities/user_entity/user_entity.dart';
 
 class ClientScreen extends ConsumerWidget {
   const ClientScreen({super.key});

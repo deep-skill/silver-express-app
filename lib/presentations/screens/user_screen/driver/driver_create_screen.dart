@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:silver/Routes/app_routes.dart';
-import 'package:silver/Screens/UserScreen/Driver/driver_screen.dart';
+import 'package:silver/config/routes/app_routes.dart';
+import 'package:silver/presentations/screens/user_screen/driver/driver_screen.dart';
 
 class DriverCreate extends ConsumerWidget {
   const DriverCreate({super.key});
@@ -13,14 +13,13 @@ class DriverCreate extends ConsumerWidget {
 
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Registrar Nuevo Conductor'),
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
-            onPressed: () {
-              context.go('/clients');
-            },
-          )
-        ),
+            title: const Text('Registrar Nuevo Conductor'),
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () {
+                context.go('/clients');
+              },
+            )),
         body: Container(child: body(context, screenSize, ref)));
   }
 }
@@ -67,7 +66,8 @@ Widget containerView(context, ref) {
         const SizedBox(height: 15),
         adressInput(addressController),
         const SizedBox(height: 15),
-        buttons(context, ref, emailController, nameController, phoneController, licenseController, addressController)
+        buttons(context, ref, emailController, nameController, phoneController,
+            licenseController, addressController)
       ],
     ),
   );
@@ -153,13 +153,13 @@ Widget adressInput(addressController) {
   );
 }
 
-Widget buttons(BuildContext context, ref, emailController, nameController, phoneController, licenseController, addressController) {
+Widget buttons(BuildContext context, ref, emailController, nameController,
+    phoneController, licenseController, addressController) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 5),
     child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-
-      children: [ 
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
         ElevatedButton(
             style: ElevatedButton.styleFrom(
               foregroundColor: const Color.fromARGB(255, 4, 94, 249),
@@ -169,12 +169,9 @@ Widget buttons(BuildContext context, ref, emailController, nameController, phone
             onPressed: () {
               context.go('/drivers');
             },
-            
-            child: const Text('Volver', style: TextStyle(fontSize: 17, color: Colors.white))
-        ),
-          
-          const SizedBox(width: 40.0),
-
+            child: const Text('Volver',
+                style: TextStyle(fontSize: 17, color: Colors.white))),
+        const SizedBox(width: 40.0),
         ElevatedButton(
             style: ElevatedButton.styleFrom(
               foregroundColor: const Color.fromARGB(255, 4, 94, 249),
@@ -182,31 +179,35 @@ Widget buttons(BuildContext context, ref, emailController, nameController, phone
               padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 23),
             ),
             onPressed: () {
-              showAlert(context, ref, emailController, nameController, phoneController, licenseController, addressController);
+              showAlert(context, ref, emailController, nameController,
+                  phoneController, licenseController, addressController);
             },
-            child: const Text('Registrar',style: TextStyle(fontSize: 17, color: Colors.white))
-        ),
+            child: const Text('Registrar',
+                style: TextStyle(fontSize: 17, color: Colors.white))),
       ],
     ),
   );
 }
 
-void showAlert(BuildContext context, ref, emailController, nameController, phoneController, licenseController, addressController){
+void showAlert(BuildContext context, ref, emailController, nameController,
+    phoneController, licenseController, addressController) {
   showDialog(
     barrierDismissible: false,
-    context: context, 
-    builder: (BuildContext context) { 
+    context: context,
+    builder: (BuildContext context) {
       return AlertDialog(
         title: const Text('Registrar'),
-        content: const Text('¿Estas Seguro Que Deseas Registrar Este Conductor?', style: TextStyle(fontSize: 17),),
+        content: const Text(
+          '¿Estas Seguro Que Deseas Registrar Este Conductor?',
+          style: TextStyle(fontSize: 17),
+        ),
         actions: [
           TextButton(
             child: const Text('Cancelar'),
-            onPressed: (){
+            onPressed: () {
               ref.read(appRouterProvider).pop();
             },
           ),
-
           TextButton(
             child: const Text('Confirmar'),
             onPressed: () {
