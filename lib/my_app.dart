@@ -103,7 +103,7 @@ class MyAppState extends ConsumerState<MyApp> {
     return MaterialApp.router(
         debugShowCheckedModeBanner: false,
         theme:
-            AppTheme(selectedColor: 1, brightness: Brightness.dark).getTheme(),
+            AppTheme(selectedColor: 0, brightness: Brightness.dark).getTheme(),
         routerConfig: appRouter);
   }
 }

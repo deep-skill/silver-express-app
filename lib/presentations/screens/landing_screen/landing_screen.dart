@@ -10,14 +10,16 @@ class LandingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+
     return Scaffold(
       body: SafeArea(
         child: Container(
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topRight,
                 end: Alignment.bottomLeft,
-                colors: [Color.fromARGB(233, 353, 452, 342), Colors.black45]),
+                colors: [colors.primary, Colors.black45]),
           ),
           child: Column(
             children: [
@@ -25,7 +27,7 @@ class LandingScreen extends StatelessWidget {
                 clipper: OvalBottomBorderClipper(),
                 child: Container(
                     color: Colors.white,
-                    height: MediaQuery.of(context).size.height * 0.5,
+                    height: MediaQuery.of(context).size.height * 0.4,
                     child: Align(
                       alignment: Alignment.center,
                       child: Padding(
@@ -36,10 +38,10 @@ class LandingScreen extends StatelessWidget {
                             SizedBox(
                               width: MediaQuery.of(context).size.width *
                                   0.8, // Ajusta el valor según sea necesario
-                              child: const Text(
+                              child: Text(
                                 'Solicite su Servicio de Taxi con nosotros',
                                 style: TextStyle(
-                                  color: Colors.black54,
+                                  color: colors.onPrimary,
                                   fontSize: 40,
                                   fontFamily: 'Pacifico',
                                 ),
@@ -58,22 +60,25 @@ class LandingScreen extends StatelessWidget {
               ElevatedButton(
                   style: ButtonStyle(
                       fixedSize: MaterialStateProperty.all(const Size(270, 50)),
-                      backgroundColor: const MaterialStatePropertyAll(
-                          Color.fromARGB(255, 0, 104, 24))),
+                      backgroundColor:
+                          MaterialStatePropertyAll(colors.secondary)),
                   onPressed: () => context.go('/home'),
-                  child: const Text(
+                  child: Text(
                     'Entrar',
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: TextStyle(color: colors.background, fontSize: 20),
                   )),
+              const SizedBox(
+                height: 15,
+              ),
               ElevatedButton(
                   style: ButtonStyle(
                       fixedSize: MaterialStateProperty.all(const Size(270, 50)),
-                      backgroundColor: const MaterialStatePropertyAll(
-                          Color.fromARGB(255, 0, 104, 24))),
+                      backgroundColor: MaterialStatePropertyAll(
+                          colors.secondary)),
                   onPressed: () => login!(),
-                  child: const Text(
+                  child: Text(
                     'Comenzemos el Viaje',
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: TextStyle(color: colors.background, fontSize: 20),
                   )),
               const SizedBox(
                 height: 70,

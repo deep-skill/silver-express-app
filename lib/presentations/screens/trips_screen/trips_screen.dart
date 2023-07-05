@@ -91,12 +91,14 @@ class Trips extends ConsumerWidget {
           FloatingActionButton(
             onPressed: () {},
             child: const Icon(Icons.search),
-            ),
-            const SizedBox(height:10,),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
           FloatingActionButton(
             onPressed: () {},
             child: const Icon(Icons.add),
-            ),
+          ),
         ],
       ),
     );
