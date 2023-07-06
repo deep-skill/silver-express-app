@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:silver/config/routes/app_routes.dart';
 
-class TypeUser extends ConsumerWidget {
+class TripOReservation extends ConsumerWidget {
   final String selectedItem;
 
-  const TypeUser({super.key, required this.selectedItem});
+  const TripOReservation({super.key, required this.selectedItem});
 
   @override
   Widget build(BuildContext context, ref) {
@@ -23,18 +23,18 @@ class TypeUser extends ConsumerWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 45, vertical: 23)),
               onPressed: () {
-                ref.read(appRouterProvider).go('/clients');
+                ref.read(appRouterProvider).go('');
               },
               child: const Row(
                 children: [
                   Icon(
-                    Icons.person_pin,
+                    Icons.list_alt_outlined,
                     size: 32,
                     color: Colors.black,
                   ),
                   SizedBox(width: 25),
                   Text(
-                    'Clientes',
+                    'Reservas',
                     style: TextStyle(
                         fontSize: 18,
                         color: Colors.black),
@@ -49,14 +49,14 @@ class TypeUser extends ConsumerWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 45, vertical: 23)),
               onPressed: () {
-                ref.read(appRouterProvider).go('/drivers');
+                ref.read(appRouterProvider).go('/viajes');
               },
               child: const Row(
                 children: [
-                  Icon(Icons.drive_eta_sharp, size: 32, color: Colors.black),
+                  Icon(Icons.location_on, size: 32, color: Colors.black),
                   SizedBox(width: 25),
                   Text(
-                    'Conductores',
+                    'Viajes',
                     style: TextStyle(
                         fontSize: 18,
                         color: Colors.black),

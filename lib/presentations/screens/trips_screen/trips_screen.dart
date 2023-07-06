@@ -167,6 +167,7 @@ class _CustomListTile extends StatelessWidget {
         ],
       ),
       onTap: () {},
+      
       trailing: const Icon(
         Icons.more_vert,
       ),
