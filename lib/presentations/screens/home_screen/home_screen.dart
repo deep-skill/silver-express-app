@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:silver/presentations/screens/trips_screen/trip_reservation_screen.dart';
 
 import '../trips_screen/trips_screen.dart';
 import '../user_screen/type_user_screen.dart';
@@ -42,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
         });
         break;
       case 3:
-        page = const Text('vista 3');
+        page = const EnterpriseScreen();
         setState(() {
           appBarTitle = 'Empresas';
         });

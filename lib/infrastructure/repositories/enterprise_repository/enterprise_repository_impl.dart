@@ -12,7 +12,7 @@ class EnterpriseRepositoryImpl implements EnterpriseRepository {
   @override
   Future<List<Enterprise>> getEnterprises() async {
     try {
-      final response = await _dio.get('/enterprises');
+      final response = await _dio.get('/enterprise');
       final List<dynamic> enterpriseDataList = response.data;
       return enterpriseDataList
           .map((data) => EnterpriseMapper.fromMap(data))
