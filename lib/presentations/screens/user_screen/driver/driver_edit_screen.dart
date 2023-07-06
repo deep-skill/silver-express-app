@@ -10,15 +10,17 @@ final TextEditingController phoneController = TextEditingController();
 final TextEditingController licenseController = TextEditingController();
 final TextEditingController addressController = TextEditingController();
 
-class DriverCreate extends ConsumerWidget {
-  const DriverCreate({super.key});
+class DriverEdit extends ConsumerWidget {
+  const DriverEdit({Key? key, required this.selectedItem}) : super(key: key);
 
-  @override
+  final Driver selectedItem;
+
+  @override 
   Widget build(BuildContext context, WidgetRef ref) { 
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Registrar Nuevo Conductor'),
+        title: const Text('Editar Este Conductor'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -61,7 +63,7 @@ class _ContainerView extends StatelessWidget {
         children: [
           const Center(
               child: Text(
-            'Formulario De Registro',
+            'Formulario De Edición',
             style: TextStyle(fontSize: 30.0),
           )),
           const SizedBox(height: 15.0),
@@ -213,7 +215,7 @@ class _Buttons extends ConsumerWidget {
                 showAlert(context, ref, emailController, nameController,
                 phoneController, licenseController, addressController);
               },
-              child: const Text('Registrar',
+              child: const Text('Editar',
                   style: TextStyle(fontSize: 17, color: Colors.white))),
         ],
       ),
@@ -254,7 +256,7 @@ void showAlert(BuildContext context, ref, emailController, nameController,
               ref.read(driverListProvider).add(newDriver);
 
               // ref.read(appRouterProvider).pop();
-              ref.read(appRouterProvider).go('/drivers');
+              ref.read(appRouterProvider).go('/conductores');
             },
           ),
         ],

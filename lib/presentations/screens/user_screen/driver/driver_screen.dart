@@ -32,7 +32,7 @@ class DriverScreen extends ConsumerWidget {
                   // Acción al hacer clic en un cliente
                 },
                 onLongPress: () {
-                  showAlert(context, ref);
+                  showAlert(context, ref,);
                 },
                 title: Text(
                     "Nombre: ${driver.name} - Licencia: ${driver.license}"),
@@ -130,7 +130,7 @@ void showAlert(BuildContext context, ref) {
               TextButton(
                 child: const Icon(Icons.edit),
                 onPressed: () {
-                  // Acción al presionar el botón de editar
+                  ref.read(appRouterProvider).go('/editDriver');
                 },
               ),
               const SizedBox(width: 35),
