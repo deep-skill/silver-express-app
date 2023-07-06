@@ -4,3 +4,4 @@ export 'user_screen/type_user_screen.dart';
 export 'user_screen/driver/driver_screen.dart';
 export 'trips_screen/trips_screen.dart';
 export 'trips_screen/bookings_screen.dart';
+export 'enterprise_screen/create_enterprise_screen.dart';
