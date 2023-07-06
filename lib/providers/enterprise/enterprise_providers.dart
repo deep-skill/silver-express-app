@@ -4,10 +4,45 @@ import '../../domain/entities/enterprise_entity/enterprise_entity.dart';
 import '../../domain/repositories/enterprise_repository/enterprise_repository.dart';
 import '../../infrastructure/repositories/enterprise_repository/enterprise_repository_impl.dart';
 
-final getEnterprisesProvider =
-    FutureProvider.autoDispose<List<Enterprise>>((ref) async {
-  final enterpriseRepository = ref.watch(enterpriseRepositoryProvider);
-  final enterprises = await enterpriseRepository.getEnterprises();
+final getEnterprisesProvider = Provider.autoDispose<List<Enterprise>>((ref) {
+  final enterprises = [
+    Enterprise(
+      id: '1',
+      ruc: '123456789',
+      name: 'Personal',
+      address: 'Dirección A',
+      status: 'Activo',
+    ),
+    Enterprise(
+      id: '2',
+      ruc: '987654321',
+      name: 'OI-GMEC',
+      address: 'Dirección B',
+      status: 'Activo',
+    ),
+    Enterprise(
+      id: '3',
+      ruc: '987612321',
+      name: 'LIMA EXPRESA',
+      address: 'Dirección C',
+      status: 'Activo',
+    ),
+    Enterprise(
+      id: '4',
+      ruc: '987652341',
+      name: 'TMS',
+      address: 'Dirección D',
+      status: 'Activo',
+    ),
+    Enterprise(
+      id: '5',
+      ruc: '987654321',
+      name: "B'MOBILE",
+      address: 'Dirección E',
+      status: 'Activo',
+    ),
+  ];
+
   return enterprises;
 });
 

@@ -49,7 +49,7 @@ class TripOReservation extends ConsumerWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 45, vertical: 23)),
               onPressed: () {
-                ref.read(appRouterProvider).go('/trips');
+                ref.read(appRouterProvider).go('/viajes');
               },
               child: const Row(
                 children: [

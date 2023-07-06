@@ -1,69 +1,54 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:silver/config/routes/app_routes.dart';
+import 'package:silver/domain/entities/enterprise_entity/enterprise_entity.dart';
+import 'package:silver/providers/enterprise/enterprise_providers.dart';
 
-import '../../../../providers/users/users_providers.dart';
-import '../../../../domain/entities/user_entity/user_entity.dart';
-
-class ClientScreen extends ConsumerWidget {
-  const ClientScreen({super.key});
+class EnterpriseScreen extends ConsumerWidget {
+  const EnterpriseScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final usersGet = ref.watch(getUsersProvider);
-    final colors = Theme.of(context).colorScheme;
+    final enterpiseGet = ref.watch(getEnterprisesProvider);
+
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => ref.read(appRouterProvider).go('/home'),
-        ),
-        title: const Text('Gestion de Clientes'),
-      ),
       body: Padding(
           padding: const EdgeInsets.only(top: 30, bottom: 50),
           child: ListView.builder(
-            itemCount: usersGet.length,
+            itemCount: enterpiseGet.length,
             itemBuilder: (BuildContext context, int index) {
-              final UserEntity user = usersGet[index];
+              final Enterprise enterprise = enterpiseGet[index];
               return Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
                 child: ListTile(
-                  onTap: () {
-                    // Acción al hacer clic en un usuario
-                  },
+                  onTap: () {},
                   onLongPress: () {
                     showAlert(context, ref);
                   },
-                  title: Text(
-                      "Nombre: ${user.name} - Empresa: ACA IRIA LA EMPRESA CON LA RELACION"),
-                  subtitle:
-                      Text("Número: ${user.phone} - Correo: ${user.email}"),
+                  title: Text("Nombre: ${enterprise.name}"),
+                  subtitle: Text(
+                      "Ruc: ${enterprise.ruc} - Dirección: ${enterprise.address}"),
                   leading: CircleAvatar(
-                    backgroundColor: colors.secondary,
-                    child: Text(user.name.substring(0, 1),
-                        style: const TextStyle(color: Colors.black)),
+                    backgroundColor: const Color.fromRGBO(103, 58, 183, 1),
+                    child: Text(enterprise.name.substring(0, 1)),
                   ),
                 ),
               );
             },
           )),
-      floatingActionButton: buttonCreate(context, ref, colors),
+      floatingActionButton: buttonCreate(context, ref),
     );
   }
 }
 
-Widget buttonCreate(BuildContext context, ref, colors) {
+Widget buttonCreate(BuildContext context, ref) {
   return FloatingActionButton(
     onPressed: () {
-      ref.read(appRouterProvider).go('/createClient');
+      ref.read(appRouterProvider).go('/home');
     },
-    backgroundColor: colors.primary,
-    child: const Icon(
-      Icons.add,
-      color: Colors.black,
-    ),
+    backgroundColor: const Color.fromRGBO(0, 150, 136, 1),
+    child: const Icon(Icons.add),
   );
 }
 
