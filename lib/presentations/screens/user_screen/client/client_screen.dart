@@ -21,46 +21,34 @@ class ClientScreen extends ConsumerWidget {
         title: const Text('Gestion de Clientes'),
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 30, bottom: 50),
-        child: usersGet.when(
-          data: (users) {
-            if (users.isEmpty) {
-              return const Center(
-                child: Text('No hay usuarios disponibles'),
+          padding: const EdgeInsets.only(top: 30, bottom: 50),
+          child: ListView.builder(
+            itemCount: usersGet.length,
+            itemBuilder: (BuildContext context, int index) {
+              final UserEntity user = usersGet[index];
+              return Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
+                child: ListTile(
+                  onTap: () {
+                    // Acción al hacer clic en un usuario
+                  },
+                  onLongPress: () {
+                    showAlert(context, ref);
+                  },
+                  title: Text(
+                      "Nombre: ${user.name} - Empresa: ACA IRIA LA EMPRESA CON LA RELACION"),
+                  subtitle:
+                      Text("Número: ${user.phone} - Correo: ${user.email}"),
+                  leading: CircleAvatar(
+                    backgroundColor: colors.secondary,
+                    child: Text(user.name.substring(0, 1),
+                        style: const TextStyle(color: Colors.black)),
+                  ),
+                ),
               );
-            } else {
-              return ListView.builder(
-                itemCount: users.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final UserEntity user = users[index];
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 15, horizontal: 25),
-                    child: ListTile(
-                      onTap: () {
-                        // Acción al hacer clic en un usuario
-                      },
-                      onLongPress: () {
-                        showAlert(context, ref);
-                      },
-                      title: Text(
-                          "Nombre: ${user.name} - Empresa: ACA IRIA LA EMPRESA CON LA RELACION"),
-                      subtitle:
-                          Text("Número: ${user.phone} - Correo: ${user.email}"),
-                      leading: CircleAvatar(
-                        backgroundColor: colors.secondary,
-                        child: Text(user.name.substring(0, 1), style: const TextStyle(color: Colors.black)),
-                      ),
-                    ),
-                  );
-                },
-              );
-            }
-          },
-          loading: () => const Center(child: CircularProgressIndicator()),
-          error: (error, stackTrace) => Center(child: Text('Error: $error')),
-        ),
-      ),
+            },
+          )),
       floatingActionButton: buttonCreate(context, ref, colors),
     );
   }
@@ -72,7 +60,10 @@ Widget buttonCreate(BuildContext context, ref, colors) {
       ref.read(appRouterProvider).go('/createClient');
     },
     backgroundColor: colors.primary,
-    child: const Icon(Icons.add, color: Colors.black,),
+    child: const Icon(
+      Icons.add,
+      color: Colors.black,
+    ),
   );
 }
 

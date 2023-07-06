@@ -12,12 +12,6 @@ class EnterpriseScreen extends ConsumerWidget {
     final enterpiseGet = ref.watch(getEnterprisesProvider);
 
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => ref.read(appRouterProvider).go('/home'),
-        ),
-      ),
       body: Padding(
           padding: const EdgeInsets.only(top: 30, bottom: 50),
           child: ListView.builder(
