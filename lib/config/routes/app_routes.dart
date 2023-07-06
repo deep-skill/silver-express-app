@@ -38,5 +38,10 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       path: '/createDriver',
       builder: (context, state) => const DriverCreate(),
     ),
+    GoRoute(
+      name: 'viaje',
+      path: '/viajes',
+      builder: (context, state) => const Trips(selectedItem: '',),
+    ),
   ]);
 });

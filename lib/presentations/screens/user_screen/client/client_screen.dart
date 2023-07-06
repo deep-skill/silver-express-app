@@ -11,7 +11,7 @@ class ClientScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final usersGet = ref.watch(getUsersProvider);
-
+    final colors = Theme.of(context).colorScheme;
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -48,8 +48,8 @@ class ClientScreen extends ConsumerWidget {
                       subtitle:
                           Text("Número: ${user.phone} - Correo: ${user.email}"),
                       leading: CircleAvatar(
-                        backgroundColor: const Color.fromRGBO(103, 58, 183, 1),
-                        child: Text(user.name.substring(0, 1)),
+                        backgroundColor: colors.secondary,
+                        child: Text(user.name.substring(0, 1), style: const TextStyle(color: Colors.black)),
                       ),
                     ),
                   );
@@ -61,18 +61,18 @@ class ClientScreen extends ConsumerWidget {
           error: (error, stackTrace) => Center(child: Text('Error: $error')),
         ),
       ),
-      floatingActionButton: buttonCreate(context, ref),
+      floatingActionButton: buttonCreate(context, ref, colors),
     );
   }
 }
 
-Widget buttonCreate(BuildContext context, ref) {
+Widget buttonCreate(BuildContext context, ref, colors) {
   return FloatingActionButton(
     onPressed: () {
       ref.read(appRouterProvider).go('/createClient');
     },
-    backgroundColor: const Color.fromRGBO(0, 150, 136, 1),
-    child: const Icon(Icons.add),
+    backgroundColor: colors.primary,
+    child: const Icon(Icons.add, color: Colors.black,),
   );
 }
 

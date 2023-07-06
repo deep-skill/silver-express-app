@@ -9,6 +9,8 @@ class DriverScreen extends ConsumerWidget {
   Widget build(BuildContext context, ref) {
     List<Driver> drivers = ref.watch(driverListProvider);
 
+    final colors = Theme.of(context).colorScheme;
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -37,26 +39,26 @@ class DriverScreen extends ConsumerWidget {
                 subtitle: Text(
                     "Número: ${driver.phoneNumber} - Correo: ${driver.email}"),
                 leading: CircleAvatar(
-                  backgroundColor: const Color.fromRGBO(103, 58, 183, 1),
-                  child: Text(driver.name.substring(0, 1)),
+                  backgroundColor: colors.secondary,
+                  child: Text(driver.name.substring(0, 1), style: const TextStyle(color: Colors.black)),
                 ),
               ),
             );
           },
         ),
       ),
-      floatingActionButton: buttonCreate(context, ref),
+      floatingActionButton: buttonCreate(context, ref, colors),
     );
   }
 }
 
-Widget buttonCreate(BuildContext context, ref) {
+Widget buttonCreate(BuildContext context, ref, colors) {
   return FloatingActionButton(
     onPressed: () {
       ref.read(appRouterProvider).go('/createDriver');
     },
-    backgroundColor: const Color.fromRGBO(0, 150, 136, 1),
-    child: const Icon(Icons.add),
+    backgroundColor: colors.primary,
+    child: const Icon(Icons.add, color: Colors.black,),
   );
 }
 
@@ -95,60 +97,6 @@ final driverListProvider = Provider<List<Driver>>((ref) {
         license: '57380000964 ',
         phoneNumber: '4563678',
         address: 'Cra 14a #104'),
-    Driver(
-        email: 'Bruno@gmail.com',
-        name: 'Bruno',
-        license: '58205461635 ',
-        phoneNumber: '3234413',
-        address: 'Cll 45 #12b'),
-    Driver(
-        email: 'Isaac@gmail.com',
-        name: 'Isaac',
-        license: '28162625004 ',
-        phoneNumber: '1465632',
-        address: 'Cra 40 #13'),
-    Driver(
-        email: 'Martin@gmail.com',
-        name: 'Martin',
-        license: '15325835517 ',
-        phoneNumber: '1456455',
-        address: 'Cll 51b #94'),
-    Driver(
-        email: 'Roque@gmail.com',
-        name: 'Roque',
-        license: '76885129427 ',
-        phoneNumber: '4563678',
-        address: 'Cra 14a #104'),
-    Driver(
-        email: 'Bruno@gmail.com',
-        name: 'Bruno',
-        license: '92268960088 ',
-        phoneNumber: '3234413',
-        address: 'Cll 45 #12b'),
-    Driver(
-        email: 'Isaac@gmail.com',
-        name: 'Isaac',
-        license: '94375976385 ',
-        phoneNumber: '1465632',
-        address: 'Cra 40 #13'),
-    Driver(
-        email: 'Martin@gmail.com',
-        name: 'Martin',
-        license: '39944944113 ',
-        phoneNumber: '1456455',
-        address: 'Cll 51b #94'),
-    Driver(
-        email: 'Roque@gmail.com',
-        name: 'Roque',
-        license: '39944944113 ',
-        phoneNumber: '4563678',
-        address: 'Cra 14a #104'),
-    Driver(
-        email: 'Bruno@gmail.com',
-        name: 'Bruno',
-        license: '13806765123',
-        phoneNumber: '3234413',
-        address: 'Cll 45 #12b'),
   ];
   return drivers;
 });

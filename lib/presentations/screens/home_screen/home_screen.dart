@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:silver/presentations/screens/enterprise_screen/enterprise_screen.dart';
 
 import '../trips_screen/trips_screen.dart';
 import '../user_screen/type_user_screen.dart';
@@ -34,11 +33,11 @@ class _HomeScreenState extends State<HomeScreen> {
         });
         break;
       case 2:
-        page = const Trips(
+        page = const TripOReservation(
           selectedItem: '',
         );
         setState(() {
-          appBarTitle = 'Viajes';
+          appBarTitle = 'Viajes y reservas';
         });
         break;
       case 3:
