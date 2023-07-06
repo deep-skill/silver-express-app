@@ -19,43 +19,30 @@ class EnterpriseScreen extends ConsumerWidget {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 30, bottom: 50),
-        child: enterpiseGet.when(
-          data: (enterprises) {
-            if (enterprises.isEmpty) {
-              return const Center(
-                child: Text('No hay empresas disponibles'),
+          padding: const EdgeInsets.only(top: 30, bottom: 50),
+          child: ListView.builder(
+            itemCount: enterpiseGet.length,
+            itemBuilder: (BuildContext context, int index) {
+              final Enterprise enterprise = enterpiseGet[index];
+              return Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
+                child: ListTile(
+                  onTap: () {},
+                  onLongPress: () {
+                    showAlert(context, ref);
+                  },
+                  title: Text("Nombre: ${enterprise.name}"),
+                  subtitle: Text(
+                      "Ruc: ${enterprise.ruc} - Dirección: ${enterprise.address}"),
+                  leading: CircleAvatar(
+                    backgroundColor: const Color.fromRGBO(103, 58, 183, 1),
+                    child: Text(enterprise.name.substring(0, 1)),
+                  ),
+                ),
               );
-            } else {
-              return ListView.builder(
-                itemCount: enterprises.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final Enterprise enterprise = enterprises[index];
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 15, horizontal: 25),
-                    child: ListTile(
-                      onTap: () {},
-                      onLongPress: () {
-                        showAlert(context, ref);
-                      },
-                      title: Text("Nombre: ${enterprise.name}"),
-                      subtitle: Text(
-                          "Ruc: ${enterprise.ruc} - address: ${enterprise.address}"),
-                      leading: CircleAvatar(
-                        backgroundColor: const Color.fromRGBO(103, 58, 183, 1),
-                        child: Text(enterprise.name.substring(0, 1)),
-                      ),
-                    ),
-                  );
-                },
-              );
-            }
-          },
-          loading: () => const Center(child: CircularProgressIndicator()),
-          error: (error, stackTrace) => Center(child: Text('Error: $error')),
-        ),
-      ),
+            },
+          )),
       floatingActionButton: buttonCreate(context, ref),
     );
   }

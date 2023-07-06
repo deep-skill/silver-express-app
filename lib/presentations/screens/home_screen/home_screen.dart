@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../trips_screen/trips_screen.dart';
+import '../enterprise_screen/enterprise_screen.dart';
+import '../trips_screen/trip_reservation_screen.dart';
 import '../user_screen/type_user_screen.dart';
 
 class HomeScreen extends StatefulWidget {
