@@ -45,7 +45,7 @@ class EnterpriseScreen extends ConsumerWidget {
 Widget buttonCreate(BuildContext context, ref) {
   return FloatingActionButton(
     onPressed: () {
-      ref.read(appRouterProvider).go('/home');
+      ref.read(appRouterProvider).go('/createEnterprise');
     },
     backgroundColor: const Color.fromRGBO(0, 150, 136, 1),
     child: const Icon(Icons.add),

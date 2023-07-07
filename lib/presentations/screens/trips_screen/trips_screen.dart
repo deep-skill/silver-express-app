@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:silver/config/routes/app_routes.dart';
 
 class TripItem {
   final int tripId;
@@ -84,14 +85,21 @@ class Trips extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Gestión de viajes'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => ref.read(appRouterProvider).go('/home'),
+        ),
+      ),
       body: const TripsView(),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          FloatingActionButton(
-            onPressed: () {},
-            child: const Icon(Icons.search),
-          ),
+          // FloatingActionButton(
+          //   onPressed: () {},
+          //   child: const Icon(Icons.search),
+          // ),
           const SizedBox(
             height: 10,
           ),
@@ -167,7 +175,6 @@ class _CustomListTile extends StatelessWidget {
         ],
       ),
       onTap: () {},
-      
       trailing: const Icon(
         Icons.more_vert,
       ),

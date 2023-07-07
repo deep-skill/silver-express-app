@@ -9,7 +9,6 @@ class TripOReservation extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    
     final colors = Theme.of(context).colorScheme;
 
     return Scaffold(
@@ -23,7 +22,7 @@ class TripOReservation extends ConsumerWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 45, vertical: 23)),
               onPressed: () {
-                ref.read(appRouterProvider).go('');
+                ref.read(appRouterProvider).go('/bookings');
               },
               child: const Row(
                 children: [
@@ -35,9 +34,7 @@ class TripOReservation extends ConsumerWidget {
                   SizedBox(width: 25),
                   Text(
                     'Reservas',
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.black),
+                    style: TextStyle(fontSize: 18, color: Colors.black),
                   )
                 ],
               ),
@@ -49,7 +46,7 @@ class TripOReservation extends ConsumerWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 45, vertical: 23)),
               onPressed: () {
-                ref.read(appRouterProvider).go('/viajes');
+                ref.read(appRouterProvider).go('/trips');
               },
               child: const Row(
                 children: [
@@ -57,9 +54,7 @@ class TripOReservation extends ConsumerWidget {
                   SizedBox(width: 25),
                   Text(
                     'Viajes',
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.black),
+                    style: TextStyle(fontSize: 18, color: Colors.black),
                   )
                 ],
               ),

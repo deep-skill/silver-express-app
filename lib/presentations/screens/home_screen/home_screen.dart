@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:silver/presentations/screens/home_screen/home_view.dart';
 
 import '../enterprise_screen/enterprise_screen.dart';
 import '../trips_screen/trip_reservation_screen.dart';
@@ -20,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
     Widget page;
     switch (currentPageIndex) {
       case 0:
-        page = const Text('Vista 0');
+        page = const  HomeView();
         setState(() {
           appBarTitle = 'Home';
         });

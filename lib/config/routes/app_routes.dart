@@ -40,17 +40,28 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       builder: (context, state) => const DriverCreate(),
     ),
     GoRoute(
-      name: 'editDriver',
-      path: '/editDriver',
-      builder: (context, state) {
-        final selectedItem = state.pathParameters['selectedItem'] as Driver;
-        return DriverEdit(selectedItem: selectedItem);
-      },
-    ),
-    GoRoute(
       name: 'trips',
       path: '/trips',
-      builder: (context, state) => const Trips(selectedItem: '',),
+      builder: (context, state) => const Trips(
+        selectedItem: '',
+      ),
+    ),
+    GoRoute(
+      name: 'bookings',
+      path: '/bookings',
+      builder: (context, state) => const Bookings(
+        selectedItem: '',
+      ),
+    ),
+    // GoRoute(
+    //   name: 'editDriver',
+    //   path: '/editDriver',
+    //   builder: (context, state) => TODO,
+    // ),
+    GoRoute(
+      name: 'createEnterprise',
+      path: '/createEnterprise',
+      builder: (context, state) => const CreateEnterprise(),
     ),
   ]);
 });
