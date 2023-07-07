@@ -4,8 +4,8 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../config/routes/app_routes.dart';
 
-class ClientCreate extends ConsumerWidget {
-  const ClientCreate({super.key});
+class CreateEnterprise extends ConsumerWidget {
+  const CreateEnterprise({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -13,11 +13,11 @@ class ClientCreate extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-          title: const Text('Crear nuevo cliente'),
+          title: const Text('Crear nueva Empresa'),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
-              context.go('/clients');
+              context.go('/home');
             },
           )),
       body: Container(
@@ -186,7 +186,7 @@ Widget addressInput(addressController) {
 
 Widget buttons(BuildContext context, ref, emailController, nameController,
     enterpriseController, phoneController, addressController) {
-      
+  
   final colors = Theme.of(context).colorScheme;
 
   return Padding(
@@ -197,11 +197,11 @@ Widget buttons(BuildContext context, ref, emailController, nameController,
         ElevatedButton(
             style: ElevatedButton.styleFrom(
               foregroundColor: colors.secondary,
-              backgroundColor: colors.primary,
+                backgroundColor: colors.primary,
               padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 23),
             ),
             onPressed: () {
-              context.go('/clients');
+              context.go('/home');
             },
             child: const Text('Volver',
                 style: TextStyle(fontSize: 17, color: Colors.white))),
@@ -213,7 +213,7 @@ Widget buttons(BuildContext context, ref, emailController, nameController,
               padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 23),
             ),
             onPressed: () {
-              showAlert(context, ref, emailController, nameController,
+              showAlerts(context, ref, emailController, nameController,
                   enterpriseController, phoneController, addressController);
             },
             child: const Text('Registrar',
@@ -223,7 +223,7 @@ Widget buttons(BuildContext context, ref, emailController, nameController,
   );
 }
 
-void showAlert(BuildContext context, ref, emailController, nameController,
+void showAlerts(BuildContext context, ref, emailController, nameController,
     enterpriseController, phoneController, addressController) {
   showDialog(
     barrierDismissible: false,

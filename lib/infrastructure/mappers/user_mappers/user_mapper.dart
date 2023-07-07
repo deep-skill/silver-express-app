@@ -1,8 +1,8 @@
 import '../../../domain/entities/user_entity/user_entity.dart';
 
 class UserMapper {
-  static UserEntity fromMap(Map<String, dynamic> map) {
-    return UserEntity(
+  static ClientEntity fromMap(Map<String, dynamic> map) {
+    return ClientEntity(
       id: map['id'] as String,
       name: map['name'] as String,
       email: map['email'] as String,
@@ -15,7 +15,7 @@ class UserMapper {
     );
   }
 
-  static Map<String, dynamic> toJson(UserEntity user) {
+  static Map<String, dynamic> toJson(ClientEntity user) {
     return {
       'id': user.id,
       'name': user.name,

@@ -10,64 +10,51 @@ class EnterpriseScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final enterpiseGet = ref.watch(getEnterprisesProvider);
-
+    final colors = Theme.of(context).colorScheme;
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => ref.read(appRouterProvider).go('/home'),
-        ),
-      ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 30, bottom: 50),
-        child: enterpiseGet.when(
-          data: (enterprises) {
-            if (enterprises.isEmpty) {
-              return const Center(
-                child: Text('No hay empresas disponibles'),
-              );
-            } else {
-              return ListView.builder(
-                itemCount: enterprises.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final Enterprise enterprise = enterprises[index];
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 15, horizontal: 25),
-                    child: ListTile(
-                      onTap: () {},
-                      onLongPress: () {
-                        showAlert(context, ref);
-                      },
-                      title: Text("Nombre: ${enterprise.name}"),
-                      subtitle: Text(
-                          "Ruc: ${enterprise.ruc} - address: ${enterprise.address}"),
-                      leading: CircleAvatar(
-                        backgroundColor: const Color.fromRGBO(103, 58, 183, 1),
-                        child: Text(enterprise.name.substring(0, 1)),
-                      ),
+          padding: const EdgeInsets.only(top: 30, bottom: 50),
+          child: ListView.builder(
+            itemCount: enterpiseGet.length,
+            itemBuilder: (BuildContext context, int index) {
+              final Enterprise enterprise = enterpiseGet[index];
+              return Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
+                child: ListTile(
+                  onTap: () {},
+                  onLongPress: () {
+                    showAlert(context, ref);
+                  },
+                  title: Text("Nombre: ${enterprise.name}"),
+                  subtitle: Text(
+                      "Ruc: ${enterprise.ruc} - Dirección: ${enterprise.address}"),
+                  leading: CircleAvatar(
+                    backgroundColor: colors.secondary,
+                    child: Text(
+                      enterprise.name.substring(0, 1),
+                      style: const TextStyle(color: Colors.black)
                     ),
-                  );
-                },
+                  ),
+                ),
               );
-            }
-          },
-          loading: () => const Center(child: CircularProgressIndicator()),
-          error: (error, stackTrace) => Center(child: Text('Error: $error')),
-        ),
-      ),
+            },
+          )),
       floatingActionButton: buttonCreate(context, ref),
     );
   }
 }
 
 Widget buttonCreate(BuildContext context, ref) {
+
+  final colors = Theme.of(context).colorScheme;
+
   return FloatingActionButton(
     onPressed: () {
-      ref.read(appRouterProvider).go('/home');
+      ref.read(appRouterProvider).go('/createEnterprise');
     },
-    backgroundColor: const Color.fromRGBO(0, 150, 136, 1),
-    child: const Icon(Icons.add),
+    backgroundColor: colors.primary,
+    child: const Icon(Icons.add, color: Colors.black,),
   );
 }
 

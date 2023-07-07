@@ -1,4 +1,4 @@
-class UserEntity {
+class ClientEntity {
   final String id;
   final String name;
   final String email;
@@ -8,7 +8,7 @@ class UserEntity {
   final double? rating;
   final String status;
 
-  UserEntity({
+  ClientEntity({
     required this.id,
     required this.name,
     required this.email,
@@ -17,5 +17,23 @@ class UserEntity {
     this.license,
     this.rating,
     required this.status,
+  });
+}
+
+class DriverEntity {
+  final String id;
+  final String email;
+  final String name;
+  final String license;
+  final String phoneNumber;
+  final String address;
+
+  DriverEntity({
+    required this.id,
+    required this.email,
+    required this.name,
+    required this.license,
+    required this.phoneNumber,
+    required this.address,
   });
 }

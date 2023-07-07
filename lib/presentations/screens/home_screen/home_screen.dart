@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:silver/presentations/screens/enterprise_screen/enterprise_screen.dart';
+import 'package:silver/presentations/screens/home_screen/home_view.dart';
 
-import '../trips_screen/trips_screen.dart';
+import '../enterprise_screen/enterprise_screen.dart';
+import '../trips_screen/trip_reservation_screen.dart';
 import '../user_screen/type_user_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -20,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
     Widget page;
     switch (currentPageIndex) {
       case 0:
-        page = const Text('Vista 0');
+        page = const  HomeView();
         setState(() {
           appBarTitle = 'Home';
         });
@@ -34,11 +35,11 @@ class _HomeScreenState extends State<HomeScreen> {
         });
         break;
       case 2:
-        page = const Trips(
+        page = const TripOReservation(
           selectedItem: '',
         );
         setState(() {
-          appBarTitle = 'Viajes';
+          appBarTitle = 'Viajes y reservas';
         });
         break;
       case 3:

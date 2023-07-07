@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:silver/presentations/screens/user_screen/driver/driver_create_screen.dart';
+import 'package:silver/presentations/screens/user_screen/driver/driver_edit_screen.dart';
 
 import '../../presentations/screens/user_screen/client/client_create_screen.dart';
 import '../../presentations/screens/user_screen/client/client_screen.dart';
@@ -37,6 +38,32 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       name: 'createDriver',
       path: '/createDriver',
       builder: (context, state) => const DriverCreate(),
+    ),
+    GoRoute(
+      name: 'trips',
+      path: '/trips',
+      builder: (context, state) => const Trips(
+        selectedItem: '',
+      ),
+    ),
+    GoRoute(
+      name: 'bookings',
+      path: '/bookings',
+      builder: (context, state) => const Bookings(
+        selectedItem: '',
+      ),
+    ),
+    GoRoute(
+      name: 'editDriver',
+      path: '/editDriver',
+      builder: (context, state) => const DriverEdit(
+        selectedItem: '',
+      ) 
+    ),
+    GoRoute(
+      name: 'createEnterprise',
+      path: '/createEnterprise',
+      builder: (context, state) => const CreateEnterprise(),
     ),
   ]);
 });

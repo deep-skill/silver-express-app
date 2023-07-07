@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:silver/config/routes/app_routes.dart';
+import 'package:silver/domain/entities/user_entity/user_entity.dart';
+import 'package:silver/providers/users/users_providers.dart';
+
 
 class DriverScreen extends ConsumerWidget {
   const DriverScreen({super.key});
 
   @override
   Widget build(BuildContext context, ref) {
-    List<Driver> drivers = ref.watch(driverListProvider);
+
+    List<DriverEntity> drivers = ref.watch(driverListProvider);
+    
+    final colors = Theme.of(context).colorScheme;
 
     return Scaffold(
       appBar: AppBar(
@@ -27,135 +33,42 @@ class DriverScreen extends ConsumerWidget {
               padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
               child: ListTile(
                 onTap: () {
-                  // Acción al hacer clic en un cliente
+
                 },
                 onLongPress: () {
-                  showAlert(context, ref);
+                  showAlert(context, ref, driver.id);
                 },
                 title: Text(
                     "Nombre: ${driver.name} - Licencia: ${driver.license}"),
                 subtitle: Text(
                     "Número: ${driver.phoneNumber} - Correo: ${driver.email}"),
                 leading: CircleAvatar(
-                  backgroundColor: const Color.fromRGBO(103, 58, 183, 1),
-                  child: Text(driver.name.substring(0, 1)),
+                  backgroundColor: colors.secondary,
+                  child: Text(driver.name.substring(0, 1), style: const TextStyle(color: Colors.black)),
                 ),
               ),
             );
           },
         ),
       ),
-      floatingActionButton: buttonCreate(context, ref),
+      floatingActionButton: buttonCreate(context, ref, colors),
     );
   }
 }
 
-Widget buttonCreate(BuildContext context, ref) {
+Widget buttonCreate(BuildContext context, ref, colors) {
   return FloatingActionButton(
     onPressed: () {
       ref.read(appRouterProvider).go('/createDriver');
     },
-    backgroundColor: const Color.fromRGBO(0, 150, 136, 1),
-    child: const Icon(Icons.add),
+    backgroundColor: colors.primary,
+    child: const Icon(Icons.add, color: Colors.black,),
   );
 }
 
-class Driver {
-  final String email;
-  final String name;
-  final String license;
-  final String phoneNumber;
-  final String address;
-
-  Driver(
-      {required this.email,
-      required this.name,
-      required this.license,
-      required this.phoneNumber,
-      required this.address});
-}
-
-final driverListProvider = Provider<List<Driver>>((ref) {
-  List<Driver> drivers = [
-    Driver(
-        email: 'Isaac@gmail.com',
-        name: 'Isaac',
-        license: '13806765123',
-        phoneNumber: '1465632',
-        address: 'Cra 40 #13'),
-    Driver(
-        email: 'Martin@gmail.com',
-        name: 'Martin',
-        license: '48205482573 ',
-        phoneNumber: '1456455',
-        address: 'Cll 51b #94'),
-    Driver(
-        email: 'Roque@gmail.com',
-        name: 'Roque',
-        license: '57380000964 ',
-        phoneNumber: '4563678',
-        address: 'Cra 14a #104'),
-    Driver(
-        email: 'Bruno@gmail.com',
-        name: 'Bruno',
-        license: '58205461635 ',
-        phoneNumber: '3234413',
-        address: 'Cll 45 #12b'),
-    Driver(
-        email: 'Isaac@gmail.com',
-        name: 'Isaac',
-        license: '28162625004 ',
-        phoneNumber: '1465632',
-        address: 'Cra 40 #13'),
-    Driver(
-        email: 'Martin@gmail.com',
-        name: 'Martin',
-        license: '15325835517 ',
-        phoneNumber: '1456455',
-        address: 'Cll 51b #94'),
-    Driver(
-        email: 'Roque@gmail.com',
-        name: 'Roque',
-        license: '76885129427 ',
-        phoneNumber: '4563678',
-        address: 'Cra 14a #104'),
-    Driver(
-        email: 'Bruno@gmail.com',
-        name: 'Bruno',
-        license: '92268960088 ',
-        phoneNumber: '3234413',
-        address: 'Cll 45 #12b'),
-    Driver(
-        email: 'Isaac@gmail.com',
-        name: 'Isaac',
-        license: '94375976385 ',
-        phoneNumber: '1465632',
-        address: 'Cra 40 #13'),
-    Driver(
-        email: 'Martin@gmail.com',
-        name: 'Martin',
-        license: '39944944113 ',
-        phoneNumber: '1456455',
-        address: 'Cll 51b #94'),
-    Driver(
-        email: 'Roque@gmail.com',
-        name: 'Roque',
-        license: '39944944113 ',
-        phoneNumber: '4563678',
-        address: 'Cra 14a #104'),
-    Driver(
-        email: 'Bruno@gmail.com',
-        name: 'Bruno',
-        license: '13806765123',
-        phoneNumber: '3234413',
-        address: 'Cll 45 #12b'),
-  ];
-  return drivers;
-});
-
-void showAlert(BuildContext context, ref) {
+void showAlert(BuildContext context, ref, String driverId) {
   var userState = true;
-
+  
   showDialog(
     barrierDismissible: false,
     context: context,
@@ -182,7 +95,8 @@ void showAlert(BuildContext context, ref) {
               TextButton(
                 child: const Icon(Icons.edit),
                 onPressed: () {
-                  // Acción al presionar el botón de editar
+                  // ref.read(selectedDriverIdProvider).state = driverId; TODO
+                  ref.read(appRouterProvider).go('/editDriver');
                 },
               ),
               const SizedBox(width: 35),
@@ -203,3 +117,4 @@ void showAlert(BuildContext context, ref) {
     },
   );
 }
+

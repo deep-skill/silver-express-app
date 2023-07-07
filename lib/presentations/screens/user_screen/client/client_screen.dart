@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:silver/config/routes/app_routes.dart';
-
+import 'package:silver/domain/entities/user_entity/user_entity.dart';
 import '../../../../providers/users/users_providers.dart';
-import '../../../../domain/entities/user_entity/user_entity.dart';
 
 class ClientScreen extends ConsumerWidget {
   const ClientScreen({super.key});
@@ -11,7 +10,7 @@ class ClientScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final usersGet = ref.watch(getUsersProvider);
-
+    final colors = Theme.of(context).colorScheme;
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -21,58 +20,49 @@ class ClientScreen extends ConsumerWidget {
         title: const Text('Gestion de Clientes'),
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 30, bottom: 50),
-        child: usersGet.when(
-          data: (users) {
-            if (users.isEmpty) {
-              return const Center(
-                child: Text('No hay usuarios disponibles'),
+          padding: const EdgeInsets.only(top: 30, bottom: 50),
+          child: ListView.builder(
+            itemCount: usersGet.length,
+            itemBuilder: (BuildContext context, int index) {
+              final ClientEntity user = usersGet[index];
+              return Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
+                child: ListTile(
+                  onTap: () {
+                    // Acción al hacer clic en un usuario
+                  },
+                  onLongPress: () {
+                    showAlert(context, ref);
+                  },
+                  title: Text(
+                      "Nombre: ${user.name} - Empresa: ACA IRIA LA EMPRESA CON LA RELACION"),
+                  subtitle:
+                      Text("Número: ${user.phone} - Correo: ${user.email}"),
+                  leading: CircleAvatar(
+                    backgroundColor: colors.secondary,
+                    child: Text(user.name.substring(0, 1),
+                        style: const TextStyle(color: Colors.black)),
+                  ),
+                ),
               );
-            } else {
-              return ListView.builder(
-                itemCount: users.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final UserEntity user = users[index];
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 15, horizontal: 25),
-                    child: ListTile(
-                      onTap: () {
-                        // Acción al hacer clic en un usuario
-                      },
-                      onLongPress: () {
-                        showAlert(context, ref);
-                      },
-                      title: Text(
-                          "Nombre: ${user.name} - Empresa: ACA IRIA LA EMPRESA CON LA RELACION"),
-                      subtitle:
-                          Text("Número: ${user.phone} - Correo: ${user.email}"),
-                      leading: CircleAvatar(
-                        backgroundColor: const Color.fromRGBO(103, 58, 183, 1),
-                        child: Text(user.name.substring(0, 1)),
-                      ),
-                    ),
-                  );
-                },
-              );
-            }
-          },
-          loading: () => const Center(child: CircularProgressIndicator()),
-          error: (error, stackTrace) => Center(child: Text('Error: $error')),
-        ),
-      ),
-      floatingActionButton: buttonCreate(context, ref),
+            },
+          )),
+      floatingActionButton: buttonCreate(context, ref, colors),
     );
   }
 }
 
-Widget buttonCreate(BuildContext context, ref) {
+Widget buttonCreate(BuildContext context, ref, colors) {
   return FloatingActionButton(
     onPressed: () {
       ref.read(appRouterProvider).go('/createClient');
     },
-    backgroundColor: const Color.fromRGBO(0, 150, 136, 1),
-    child: const Icon(Icons.add),
+    backgroundColor: colors.primary,
+    child: const Icon(
+      Icons.add,
+      color: Colors.black,
+    ),
   );
 }
 
