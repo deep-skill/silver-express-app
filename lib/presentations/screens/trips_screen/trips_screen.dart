@@ -84,7 +84,6 @@ class Trips extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-
     final colors = Theme.of(context).colorScheme;
 
     return Scaffold(
@@ -107,9 +106,14 @@ class Trips extends ConsumerWidget {
             height: 10,
           ),
           FloatingActionButton(
-            onPressed: () {},
+            onPressed: () {
+              ref.read(appRouterProvider).go('/createTrip');
+            },
             backgroundColor: colors.primary,
-            child: const Icon(Icons.add, color: Colors.black,),
+            child: const Icon(
+              Icons.add,
+              color: Colors.black,
+            ),
           ),
         ],
       ),
@@ -141,9 +145,8 @@ class _CustomListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final colors = Theme.of(context).colorScheme;
-    
+
     return ListTile(
       leading: Icon(
         Icons.directions_car,
@@ -151,7 +154,10 @@ class _CustomListTile extends StatelessWidget {
       ),
       title: Row(
         children: [
-          Icon(Icons.info, color: colors.primary,),
+          Icon(
+            Icons.info,
+            color: colors.primary,
+          ),
           Text('${item.reserveId}'),
         ],
       ),
@@ -159,7 +165,10 @@ class _CustomListTile extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(Icons.account_circle, color: colors.primary,),
+              Icon(
+                Icons.account_circle,
+                color: colors.primary,
+              ),
               const SizedBox(
                 width: 5,
               ),
@@ -168,7 +177,10 @@ class _CustomListTile extends StatelessWidget {
           ),
           Row(
             children: [
-              Icon(Icons.directions, color: colors.primary,),
+              Icon(
+                Icons.directions,
+                color: colors.primary,
+              ),
               const SizedBox(
                 width: 5,
               ),

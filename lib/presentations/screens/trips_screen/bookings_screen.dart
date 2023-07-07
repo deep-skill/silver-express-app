@@ -11,10 +11,18 @@ class BookingItem {
   final String address;
   final String finalAddress;
 
-  const BookingItem({required this.bookingId, required this.enterpriseFK, required this.reserveDate, required this.tripDate, required this.tripType, required this.address, required this.finalAddress});
+  const BookingItem(
+      {required this.bookingId,
+      required this.enterpriseFK,
+      required this.reserveDate,
+      required this.tripDate,
+      required this.tripType,
+      required this.address,
+      required this.finalAddress});
   //constructor
 }
- final bookingItems = <BookingItem>[
+
+final bookingItems = <BookingItem>[
   const BookingItem(
     bookingId: 512623,
     enterpriseFK: 13,
@@ -69,9 +77,8 @@ class Bookings extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-
     final colors = Theme.of(context).colorScheme;
-    
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Gestión de reservas'),
@@ -92,9 +99,14 @@ class Bookings extends ConsumerWidget {
             height: 10,
           ),
           FloatingActionButton(
-            onPressed: () {},
+            onPressed: () {
+              ref.read(appRouterProvider).go('/createBooking');
+            },
             backgroundColor: colors.primary,
-            child: const Icon(Icons.add, color: Colors.black,),
+            child: const Icon(
+              Icons.add,
+              color: Colors.black,
+            ),
           ),
         ],
       ),
@@ -126,7 +138,6 @@ class _CustomListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final colors = Theme.of(context).colorScheme;
 
     return ListTile(
@@ -136,7 +147,10 @@ class _CustomListTile extends StatelessWidget {
       ),
       title: Row(
         children: [
-          Icon(Icons.info, color: colors.primary,),
+          Icon(
+            Icons.info,
+            color: colors.primary,
+          ),
           const SizedBox(width: 15),
           Text('${item.bookingId}'),
         ],
@@ -146,7 +160,10 @@ class _CustomListTile extends StatelessWidget {
           const SizedBox(height: 5),
           Row(
             children: [
-              Icon(Icons.business_outlined, color: colors.primary,),
+              Icon(
+                Icons.business_outlined,
+                color: colors.primary,
+              ),
               const SizedBox(
                 width: 15,
               ),
@@ -155,7 +172,10 @@ class _CustomListTile extends StatelessWidget {
           ),
           Row(
             children: [
-              Icon(Icons.date_range, color: colors.primary,),
+              Icon(
+                Icons.date_range,
+                color: colors.primary,
+              ),
               const SizedBox(
                 width: 15,
               ),
@@ -169,9 +189,11 @@ class _CustomListTile extends StatelessWidget {
           ),
           const SizedBox(height: 5),
           Row(
-            
             children: [
-              Icon(Icons.mode_of_travel_outlined, color: colors.primary,),
+              Icon(
+                Icons.mode_of_travel_outlined,
+                color: colors.primary,
+              ),
               const SizedBox(
                 width: 15,
               ),
@@ -183,12 +205,10 @@ class _CustomListTile extends StatelessWidget {
               )
             ],
           ),
-        const Divider(),
+          const Divider(),
         ],
       ),
-      
       onTap: () {},
-      
       trailing: const Icon(
         Icons.more_vert,
       ),

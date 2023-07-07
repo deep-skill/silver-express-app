@@ -65,5 +65,15 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       path: '/createEnterprise',
       builder: (context, state) => const CreateEnterprise(),
     ),
+    GoRoute(
+      name: 'createBooking',
+      path: '/createBooking',
+      builder: (context, state) => const BookingCreate(),
+    ),
+    GoRoute(
+      name: 'createTrip',
+      path: '/createTrip',
+      builder: (context, state) => const TripCreate(),
+    ),
   ]);
 });
