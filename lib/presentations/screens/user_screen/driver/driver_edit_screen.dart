@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:silver/config/routes/app_routes.dart';
-import 'package:silver/presentations/screens/user_screen/driver/driver_screen.dart';
+// import 'package:silver/domain/entities/user_entity/user_entity.dart'; TODO
+// import 'package:silver/providers/users/users_providers.dart'; TODO
 
 final TextEditingController emailController = TextEditingController();
 final TextEditingController nameController = TextEditingController();
@@ -12,12 +13,10 @@ final TextEditingController addressController = TextEditingController();
 
 
 class DriverEdit extends ConsumerWidget {
-  const DriverEdit({Key? key, required this.selectedItem}) : super(key: key);
+  const DriverEdit({super.key, required this.selectedItem});
 
-  final Driver selectedItem;
+  final String selectedItem;
   
-  
-
   @override 
   Widget build(BuildContext context, WidgetRef ref) { 
 
@@ -191,6 +190,7 @@ class _Buttons extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5),
       child: Row(
@@ -215,8 +215,7 @@ class _Buttons extends ConsumerWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 23),
               ),
               onPressed: () {
-                showAlert(context, ref, emailController, nameController,
-                phoneController, licenseController, addressController);
+                showAlert(context, ref);
               },
               child: const Text('Editar',
                   style: TextStyle(fontSize: 17, color: Colors.white))),
@@ -226,8 +225,7 @@ class _Buttons extends ConsumerWidget {
   }
 }
 
-void showAlert(BuildContext context, ref, emailController, nameController,
-    phoneController, licenseController, addressController) {
+void showAlert(context, ref) {
   showDialog(
     barrierDismissible: false,
     context: context,
@@ -248,17 +246,10 @@ void showAlert(BuildContext context, ref, emailController, nameController,
           TextButton(
             child: const Text('Confirmar'),
             onPressed: () {
-              final newDriver = Driver(
-                email: emailController.text,
-                name: nameController.text,
-                license: licenseController.text,
-                phoneNumber: phoneController.text,
-                address: addressController.text,
-              );
+              // updateDriver(ref); TODO
+              // ref.read(driverListProvider).add(newDriver);
 
-              ref.read(driverListProvider).add(newDriver);
-
-              // ref.read(appRouterProvider).pop();
+              // // ref.read(appRouterProvider).pop();
               ref.read(appRouterProvider).go('/conductores');
             },
           ),
@@ -267,3 +258,30 @@ void showAlert(BuildContext context, ref, emailController, nameController,
     },
   );
 }
+
+
+// void updateDriver(ref) { 
+//   final id = ref.read(selectedDriverIdProvider).state;  
+//   final drivers = ref.read(driverListProvider);
+//   print('EL ID ES: $id');
+//   final updatedDriver = DriverEntity(
+//     id: id,
+//     email: emailController.text,
+//     name: nameController.text,
+//     license: licenseController.text,
+//     phoneNumber: phoneController.text,
+//     address: addressController.text,
+//   );
+
+//   // Buscar el conductor en la lista y reemplazarlo con la versión actualizada
+//   final updatedDrivers = drivers.map((driver) {
+//     if (driver.id == id) {
+//       return updatedDriver;
+//     }
+//     return driver;
+//   }).toList();
+
+//   ref.read(driverListProvider).replace(updatedDrivers);
+
+//   // ref.read(appRouterProvider).go('/conductores');
+// } TODO

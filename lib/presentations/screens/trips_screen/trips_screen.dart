@@ -84,6 +84,9 @@ class Trips extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
+
+    final colors = Theme.of(context).colorScheme;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Gestión de viajes'),
@@ -105,7 +108,8 @@ class Trips extends ConsumerWidget {
           ),
           FloatingActionButton(
             onPressed: () {},
-            child: const Icon(Icons.add),
+            backgroundColor: colors.primary,
+            child: const Icon(Icons.add, color: Colors.black,),
           ),
         ],
       ),
@@ -137,13 +141,17 @@ class _CustomListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final colors = Theme.of(context).colorScheme;
+    
     return ListTile(
-      leading: const Icon(
+      leading: Icon(
         Icons.directions_car,
+        color: colors.secondary,
       ),
       title: Row(
         children: [
-          const Icon(Icons.info),
+          Icon(Icons.info, color: colors.primary,),
           Text('${item.reserveId}'),
         ],
       ),
@@ -151,7 +159,7 @@ class _CustomListTile extends StatelessWidget {
         children: [
           Row(
             children: [
-              const Icon(Icons.account_circle),
+              Icon(Icons.account_circle, color: colors.primary,),
               const SizedBox(
                 width: 5,
               ),
@@ -160,7 +168,7 @@ class _CustomListTile extends StatelessWidget {
           ),
           Row(
             children: [
-              const Icon(Icons.directions),
+              Icon(Icons.directions, color: colors.primary,),
               const SizedBox(
                 width: 5,
               ),

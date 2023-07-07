@@ -186,6 +186,9 @@ Widget addressInput(addressController) {
 
 Widget buttons(BuildContext context, ref, emailController, nameController,
     enterpriseController, phoneController, addressController) {
+      
+  final colors = Theme.of(context).colorScheme;
+
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 5),
     child: Row(
@@ -193,8 +196,8 @@ Widget buttons(BuildContext context, ref, emailController, nameController,
       children: [
         ElevatedButton(
             style: ElevatedButton.styleFrom(
-              foregroundColor: const Color.fromARGB(255, 4, 94, 249),
-              backgroundColor: const Color.fromARGB(255, 96, 126, 179),
+              foregroundColor: colors.secondary,
+              backgroundColor: colors.primary,
               padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 23),
             ),
             onPressed: () {
@@ -205,8 +208,8 @@ Widget buttons(BuildContext context, ref, emailController, nameController,
         const SizedBox(width: 40.0),
         ElevatedButton(
             style: ElevatedButton.styleFrom(
-              foregroundColor: const Color.fromARGB(255, 4, 94, 249),
-              backgroundColor: const Color.fromARGB(255, 96, 126, 179),
+              foregroundColor: colors.secondary,
+              backgroundColor: colors.primary,
               padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 23),
             ),
             onPressed: () {

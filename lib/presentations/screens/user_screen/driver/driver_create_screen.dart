@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:silver/config/routes/app_routes.dart';
-import 'package:silver/presentations/screens/user_screen/driver/driver_screen.dart';
+import 'package:silver/domain/entities/user_entity/user_entity.dart';
+import 'package:silver/providers/users/users_providers.dart';
 
 final TextEditingController emailController = TextEditingController();
 final TextEditingController nameController = TextEditingController();
@@ -186,6 +187,9 @@ class _Buttons extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    
+    final colors = Theme.of(context).colorScheme;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5),
       child: Row(
@@ -193,8 +197,8 @@ class _Buttons extends ConsumerWidget {
         children: [
           ElevatedButton(
               style: ElevatedButton.styleFrom(
-                foregroundColor: const Color.fromARGB(255, 4, 94, 249),
-                backgroundColor: const Color.fromARGB(255, 96, 126, 179),
+                foregroundColor: colors.secondary,
+                backgroundColor: colors.primary,
                 padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 23),
               ),
               onPressed: () {
@@ -205,8 +209,8 @@ class _Buttons extends ConsumerWidget {
           const SizedBox(width: 40.0),
           ElevatedButton(
               style: ElevatedButton.styleFrom(
-                foregroundColor: const Color.fromARGB(255, 4, 94, 249),
-                backgroundColor: const Color.fromARGB(255, 96, 126, 179),
+                foregroundColor: colors.secondary,
+                backgroundColor: colors.primary,
                 padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 23),
               ),
               onPressed: () {
@@ -243,7 +247,8 @@ void showAlert(BuildContext context, ref, emailController, nameController,
           TextButton(
             child: const Text('Confirmar'),
             onPressed: () {
-              final newDriver = Driver(
+              final newDriver = DriverEntity(
+                id: '',
                 email: emailController.text,
                 name: nameController.text,
                 license: licenseController.text,

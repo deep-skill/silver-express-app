@@ -1,14 +1,13 @@
 import 'package:dio/dio.dart';
+import 'package:silver/domain/entities/user_entity/user_entity.dart';
 import 'package:silver/infrastructure/mappers/user_mappers/user_mapper.dart';
-
-import '../../../domain/entities/user_entity/user_entity.dart';
 import '../../../domain/repositories/user_repository/user_repository.dart';
 
 class UserRepositoryImpl implements UserRepository {
   final Dio _dio = Dio(BaseOptions(baseUrl: 'http://localhost:6104'));
 
   @override
-  Future<List<UserEntity>> getUsers() async {
+  Future<List<ClientEntity>> getUsers() async {
     try {
       final response = await _dio.get('/user/');
       final data = response.data as List<dynamic>?;
@@ -26,7 +25,7 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<UserEntity> getUserById(String id) async {
+  Future<ClientEntity> getUserById(String id) async {
     try {
       final response = await _dio.get('/users/$id');
       final data = response.data as Map<String, dynamic>;
@@ -38,7 +37,7 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<UpdateResult> updateUser(UserEntity user) async {
+  Future<UpdateResult> updateUser(ClientEntity user) async {
     const url = '/users/update';
 
     try {

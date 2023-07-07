@@ -1,11 +1,42 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:uuid/uuid.dart';
 import '../../domain/entities/user_entity/user_entity.dart';
 import '../../domain/repositories/user_repository/user_repository.dart';
 import '../../infrastructure/repositories/user_repositories/user_repository_impl.dart';
 
-final getUsersProvider = Provider.autoDispose<List<UserEntity>>((ref) {
+// final selectedDriverIdProvider = StateProvider<String>((ref) => ''); TODO
+
+final driverListProvider = Provider.autoDispose<List<DriverEntity>>((ref) {
+  final drivers = [
+    DriverEntity(
+      id: const Uuid().v4(),
+      email: 'Isaac@gmail.com',
+      name: 'Isaac',
+      license: '13806765123',
+      phoneNumber: '1465632',
+      address: 'Cra 40 #13',
+    ),
+    DriverEntity(
+        id: const Uuid().v4(),
+        email: 'Martin@gmail.com',
+        name: 'Martin',
+        license: '48205482573 ',
+        phoneNumber: '1456455',
+        address: 'Cll 51b #94'),
+    DriverEntity(
+        id: const Uuid().v4(),
+        email: 'Roque@gmail.com',
+        name: 'Roque',
+        license: '57380000964 ',
+        phoneNumber: '4563678',
+        address: 'Cra 14a #104'),
+  ];
+  return drivers;
+});
+
+final getUsersProvider = Provider.autoDispose<List<ClientEntity>>((ref) {
   final users = [
-    UserEntity(
+    ClientEntity(
       id: '1',
       name: 'Usuario 1',
       email: 'usuario1@example.com',
@@ -15,7 +46,7 @@ final getUsersProvider = Provider.autoDispose<List<UserEntity>>((ref) {
       rating: 4.5,
       status: 'Activo',
     ),
-    UserEntity(
+    ClientEntity(
       id: '2',
       name: 'Usuario 2',
       email: 'usuario2@example.com',
@@ -25,7 +56,7 @@ final getUsersProvider = Provider.autoDispose<List<UserEntity>>((ref) {
       rating: 3.8,
       status: 'Inactivo',
     ),
-    UserEntity(
+    ClientEntity(
       id: '3',
       name: 'Usuario 1',
       email: 'usuario3@example.com',
@@ -35,7 +66,7 @@ final getUsersProvider = Provider.autoDispose<List<UserEntity>>((ref) {
       rating: 4,
       status: 'Activo',
     ),
-    UserEntity(
+    ClientEntity(
       id: '4',
       name: 'Usuario 4',
       email: 'usuario4@example.com',
@@ -45,7 +76,7 @@ final getUsersProvider = Provider.autoDispose<List<UserEntity>>((ref) {
       rating: 3,
       status: 'Activo',
     ),
-    UserEntity(
+    ClientEntity(
       id: '5',
       name: 'Usuario 5',
       email: 'usuario5@example.com',
@@ -55,7 +86,7 @@ final getUsersProvider = Provider.autoDispose<List<UserEntity>>((ref) {
       rating: 4.8,
       status: 'Activo',
     ),
-    UserEntity(
+    ClientEntity(
       id: '6',
       name: 'Usuario 6',
       email: 'usuario1@example.com',
@@ -65,7 +96,7 @@ final getUsersProvider = Provider.autoDispose<List<UserEntity>>((ref) {
       rating: 3.5,
       status: 'Activo',
     ),
-    UserEntity(
+    ClientEntity(
       id: '7',
       name: 'Usuario 7',
       email: 'usuario7@example.com',
@@ -80,14 +111,14 @@ final getUsersProvider = Provider.autoDispose<List<UserEntity>>((ref) {
 });
 
 final getUserByIdProvider =
-    FutureProvider.family<UserEntity, String>((ref, id) async {
+    FutureProvider.family<ClientEntity, String>((ref, id) async {
   final userRepository = ref.watch(userRepositoryProvider);
   final user = await userRepository.getUserById(id);
   return user;
 });
 
 final updateUserProvider =
-    FutureProvider.family<UpdateResult, UserEntity>((ref, user) async {
+    FutureProvider.family<UpdateResult, ClientEntity>((ref, user) async {
   final userRepository = ref.watch(userRepositoryProvider);
   final result = await userRepository.updateUser(user);
   return result;

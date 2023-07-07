@@ -10,7 +10,7 @@ class EnterpriseScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final enterpiseGet = ref.watch(getEnterprisesProvider);
-
+    final colors = Theme.of(context).colorScheme;
     return Scaffold(
       body: Padding(
           padding: const EdgeInsets.only(top: 30, bottom: 50),
@@ -30,8 +30,11 @@ class EnterpriseScreen extends ConsumerWidget {
                   subtitle: Text(
                       "Ruc: ${enterprise.ruc} - Dirección: ${enterprise.address}"),
                   leading: CircleAvatar(
-                    backgroundColor: const Color.fromRGBO(103, 58, 183, 1),
-                    child: Text(enterprise.name.substring(0, 1)),
+                    backgroundColor: colors.secondary,
+                    child: Text(
+                      enterprise.name.substring(0, 1),
+                      style: const TextStyle(color: Colors.black)
+                    ),
                   ),
                 ),
               );
@@ -43,12 +46,15 @@ class EnterpriseScreen extends ConsumerWidget {
 }
 
 Widget buttonCreate(BuildContext context, ref) {
+
+  final colors = Theme.of(context).colorScheme;
+
   return FloatingActionButton(
     onPressed: () {
       ref.read(appRouterProvider).go('/createEnterprise');
     },
-    backgroundColor: const Color.fromRGBO(0, 150, 136, 1),
-    child: const Icon(Icons.add),
+    backgroundColor: colors.primary,
+    child: const Icon(Icons.add, color: Colors.black,),
   );
 }
 

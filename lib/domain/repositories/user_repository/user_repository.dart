@@ -1,9 +1,9 @@
 import '../../entities/user_entity/user_entity.dart';
 
 abstract class UserRepository {
-  Future<List<UserEntity>> getUsers();
-  Future<UserEntity> getUserById(String id);
-  Future<UpdateResult> updateUser(UserEntity user);
+  Future<List<ClientEntity>> getUsers();
+  Future<ClientEntity> getUserById(String id);
+  Future<UpdateResult> updateUser(ClientEntity user);
   Future<UpdateResult> updateStatus(String email, String status);
 }
 

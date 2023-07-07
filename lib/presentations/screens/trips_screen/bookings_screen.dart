@@ -69,6 +69,9 @@ class Bookings extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
+
+    final colors = Theme.of(context).colorScheme;
+    
     return Scaffold(
       appBar: AppBar(
         title: const Text('Gestión de reservas'),
@@ -90,7 +93,8 @@ class Bookings extends ConsumerWidget {
           ),
           FloatingActionButton(
             onPressed: () {},
-            child: const Icon(Icons.add),
+            backgroundColor: colors.primary,
+            child: const Icon(Icons.add, color: Colors.black,),
           ),
         ],
       ),
@@ -126,8 +130,9 @@ class _CustomListTile extends StatelessWidget {
     final colors = Theme.of(context).colorScheme;
 
     return ListTile(
-      leading: const Icon(
+      leading: Icon(
         Icons.account_circle_outlined,
+        color: colors.secondary,
       ),
       title: Row(
         children: [

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:silver/config/routes/app_routes.dart';
-
+import 'package:silver/domain/entities/user_entity/user_entity.dart';
 import '../../../../providers/users/users_providers.dart';
-import '../../../../domain/entities/user_entity/user_entity.dart';
 
 class ClientScreen extends ConsumerWidget {
   const ClientScreen({super.key});
@@ -25,7 +24,7 @@ class ClientScreen extends ConsumerWidget {
           child: ListView.builder(
             itemCount: usersGet.length,
             itemBuilder: (BuildContext context, int index) {
-              final UserEntity user = usersGet[index];
+              final ClientEntity user = usersGet[index];
               return Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
